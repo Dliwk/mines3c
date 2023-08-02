@@ -1,0 +1,170 @@
+use crate::tok::Tok;
+use crate::ast;
+
+grammar<'input>(text: &'input str);
+
+pub Program: ast::Program {
+    <definitions:Definition*> => ast::Program { definitions },
+}
+
+Definition: ast::Definition {
+    FunctionDefinition,
+}
+
+Ident: ...
+
+FunctionDefinition: ast::Definition {
+    <location:@L> <is_inline:"inline"?> "fn" <name:Ident> <arg:Params> <returns:("->" ReturnType)?> <body:StatementBlock> => {
+        let returns = returns.unwrap_or(ast::ReturnType::Nothing);
+        let node = if is_inline.is_some() {
+            ast::DefinitionKind::Function { name, arg, returns, body }
+        } else {
+            // TODO: error if there are any args or returns
+            ast::DefinitionKind::InlineFunction { name, body }
+        }
+        ast::Definition::new(location, node)
+    }
+}
+
+Params: ast::ArgumentType {
+    "(" <arg:ArgumentType?> ")" => {
+        arg.unwrap_or(ast::ArgumentType::Nothing)
+    }
+}
+
+ReturnType: ast::ReturnType {
+    "arg" => ast::ReturnType::Argument,
+    "state" => ast::ReturnType::State,
+}
+
+ArgumentType: ast::ArgumentType {
+    "arg" => ast::ArgumentType::Argument,
+    "state" => ast::ArgumentType::State,
+}
+
+StatementBlock: ast::Statement {
+    <location:@L> "{" <body:Statement*> "}" => {
+        ast::Statement::new(
+            location,
+            ast::StatementBlock { body }
+        )
+    }
+}
+
+Statement: ast::Statement {
+    SingleStatement ";",
+    StatementBlock,
+}
+
+SingleStatement: ast::Statement {
+    FunctionCallStatement,
+    LoopStatement,
+    WhileStatement,
+    IfStatement,
+}
+
+FunctionCallStatement: ast::Statement {
+    <location:@L> <name:Ident> "(" ")" => {
+        let node = ast::StatementKind::FunctionCall { name };
+        ast::Statement { location, node }
+    }
+}
+
+LoopStatement: ast::Statement {
+    <location:@L> "loop" <block:StatementBlock> => {
+        let node = ast::StatementKind::Loop { body: vec![block] };
+        ast::Statement::new(location, node)
+    }
+}
+
+WhileStatement: ast::Statement {
+    <location:@L> "while" <condition:Condition> <block:StatementBlock> => {
+        let node = ast::StatementKind::While { condition, body: vec![block] };
+        ast::Statement::new(location, node)
+    }
+}
+
+IfStatement: ast::Statement {
+    <location:@L> "if" <condition:Condition> <block:StatementBlock> <orelse:("else" Statement)?> => {
+        let orelse = match orelse {
+            Some(stmt) => vec![stmt],
+            None => vec![],
+        }
+        let node = ast::StatementKind::If { condition, body: vec![block], orelse };
+        ast::Statement::new(location, node)
+    }
+}
+
+Condition: ast::Condition {
+    FunctionCallResultCondition,
+    VariableComparisonCondition,
+}
+
+FunctionCallResultCondition: ast::Condition {
+    <location:@L> <name:Ident> "(" ")" => {
+        // TODO: check that function returns an argument or a state.
+        let node = ast::ConditionKind::FunctionCallResult { name };
+        ast::Condition::new(location, node)
+    }
+}
+
+VariableComparisonCondition: ast::Condition {
+    <location:@L> <var:Variable> <op:ComparisonOp> <value:Integer> => {
+        let node = ast::ConditionKind::VariableComparison { var, value, op };
+        ast::Condition::new(location, node)
+    }
+}
+
+Variable: ast::Variable {
+    <v:"Var"> => ast::Variable { name: v }
+}
+
+ComparisonOp: ast::ComparisonOp {
+    "==" => ast::ComparisonOp::Eq,
+    "!=" => ast::ComparisonOp::NotEq,
+    ">" => ast::ComparisonOp::GreaterThan,
+    "<" => ast::ComparisonOp::LessThan,
+    ">=" => ast::ComparisonOp::GreaterOrEqual,
+    "<=" => ast::ComparisonOp::LessOrEqual,
+}
+
+Integer: ast::Integer {
+    <i:"Integer"> => i,
+}
+
+extern {
+    type Location = usize;
+    type Error = tok::Error;
+
+    enum Tok<'input> {
+        "fn" => Tok::Fn,
+        "inline" => Tok::Inline,
+        "return" => Tok::Return,
+        "repeat" => Tok::Repeat,
+        "loop" => Tok::Loop,
+        "if" => Tok::If,
+        "else" => Tok::Else,
+        "while" => Tok::While,
+        "arg" => Tok::Arg,
+        "label" => Tok::Label,
+
+        "Id" => Tok::Id(<&'input str>),
+        "Var" => Tok::Var(<&'input str>),
+        // "StringLiteral" => Tok::StringLiteral(<&'input str>),
+        "Integer" => Tok::Integer(<u32>),
+
+        "(" => Tok::LeftParen,
+        ")" => Tok::RightParen,
+        "{" => Tok::LeftBrace,
+        "}" => Tok::RightBrace,
+        ";" => Tok::Semi,
+        "<" => Tok::LessThan,
+        ">" => Tok::GreaterThan,
+        "==" => Tok::Equal,
+        "!=" => Tok::NotEqual,
+        "<=" => Tok::LessOrEqual,
+        ">=" => Tok::GreaterOrEqual,
+        "!" => Tok::Bang,
+        "->" => Tok::RightArrow,
+    }
+}

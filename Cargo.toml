@@ -1,0 +1,11 @@
+[package]
+name = "mines3c"
+version = "0.1.0"
+edition = "2021"
+
+[build-dependencies]
+lalrpop = { version = "0.20.0", features = ["lexer", "unicode"] }
+
+[dependencies]
+lalrpop-util = { version = "0.20.0", features = ["lexer", "unicode", "regex", "std"] }
+unicode-xid = "0.2.4"
