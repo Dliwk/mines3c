@@ -1,5 +1,6 @@
 //! Tokenizer
 
+use std::fmt::{Display, Formatter};
 use std::str::CharIndices;
 use unicode_xid::UnicodeXID;
 
@@ -12,12 +13,31 @@ pub struct Error {
     pub code: ErrorCode,
 }
 
+impl Display for Error {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Error({:?}) at {}: {}", self.code, self.location, match self.code {
+            UnrecognizedToken => "unrecognized token",
+            UnterminatedStringLiteral => "unterminated string literal",
+            InvalidVariable => "invalid variable name",
+            IntegerTooBig => "integer can't fit in u32",
+            // InlineFnHasArgOrReturn => "inline function has an argument or returns something",
+        })
+    }
+}
+
+impl Display for Tok<'_> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub enum ErrorCode {
     UnrecognizedToken,
     UnterminatedStringLiteral,
     InvalidVariable,
     IntegerTooBig,
+    // InlineFnHasArgOrReturn,
 }
 
 fn error<T>(c: ErrorCode, l: usize) -> Result<T, Error> {
@@ -39,7 +59,9 @@ pub enum Tok<'input> {
     Else,
     While,
     Arg,
-    Label,
+    State,
+    InlineCode,
+    Const,
 
     // Identifiers
     Id(&'input str),
@@ -61,6 +83,7 @@ pub enum Tok<'input> {
     GreaterOrEqual,
     Bang,
     RightArrow,
+    Assign,
 }
 
 pub struct Tokenizer<'input> {
@@ -82,7 +105,9 @@ const KEYWORDS: &[(&str, Tok<'static>)] = &[
     ("else", Else),
     ("while", While),
     ("arg", Arg),
-    ("label", Label),
+    ("state", State),
+    ("__code__", InlineCode),
+    ("const", Const),
 ];
 
 impl<'input> Tokenizer<'input> {
@@ -186,7 +211,7 @@ impl<'input> Tokenizer<'input> {
                         self.bump();
                         Some(Ok((idx, Equal, idx1 + 1)))
                     }
-                    _ => Some(error(UnrecognizedToken, idx)),
+                    _ => Some(Ok((idx, Assign, idx + 1)))
                 },
                 Some((idx, '-')) => match self.bump() {
                     Some((idx1, '>')) => {
@@ -288,7 +313,6 @@ impl<'input> Iterator for Tokenizer<'input> {
         }
     }
 }
-
 
 fn is_identifier_start(c: char) -> bool {
     c.is_xid_start() || c == '_'

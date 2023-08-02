@@ -1,0 +1,346 @@
+Program {
+    definitions: [
+        Located {
+            location: 45,
+            node: InlineFunction {
+                name: "move_forward",
+                body: [
+                    Located {
+                        location: 70,
+                        node: StatementBlock {
+                            body: [
+                                Located {
+                                    location: 74,
+                                    node: InlineCode {
+                                        body: InlineCode {
+                                            code: "^F",
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
+        Located {
+            location: 93,
+            node: InlineFunction {
+                name: "check_empty",
+                body: [
+                    Located {
+                        location: 117,
+                        node: StatementBlock {
+                            body: [
+                                Located {
+                                    location: 121,
+                                    node: InlineCode {
+                                        body: InlineCode {
+                                            code: "=e",
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
+        Located {
+            location: 140,
+            node: InlineFunction {
+                name: "look_forward",
+                body: [
+                    Located {
+                        location: 165,
+                        node: StatementBlock {
+                            body: [
+                                Located {
+                                    location: 169,
+                                    node: InlineCode {
+                                        body: InlineCode {
+                                            code: "[F]",
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
+        Located {
+            location: 189,
+            node: InlineFunction {
+                name: "turn_random",
+                body: [
+                    Located {
+                        location: 213,
+                        node: StatementBlock {
+                            body: [
+                                Located {
+                                    location: 217,
+                                    node: InlineCode {
+                                        body: InlineCode {
+                                            code: "RAND;",
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
+        Located {
+            location: 239,
+            node: Function {
+                name: "move_forward_while_empty",
+                arg: Nothing,
+                returns: Nothing,
+                body: [
+                    Located {
+                        location: 269,
+                        node: StatementBlock {
+                            body: [
+                                Located {
+                                    location: 273,
+                                    node: FunctionCall {
+                                        name: "look_forward",
+                                    },
+                                },
+                                Located {
+                                    location: 291,
+                                    node: If {
+                                        condition: Located {
+                                            location: 294,
+                                            node: Negative {
+                                                expr: Located {
+                                                    location: 295,
+                                                    node: FunctionCallResult {
+                                                        name: "check_empty",
+                                                    },
+                                                },
+                                            },
+                                        },
+                                        body: [
+                                            Located {
+                                                location: 309,
+                                                node: StatementBlock {
+                                                    body: [
+                                                        Located {
+                                                            location: 315,
+                                                            node: Return {
+                                                                expr: None,
+                                                            },
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        ],
+                                        orelse: [],
+                                    },
+                                },
+                                Located {
+                                    location: 329,
+                                    node: FunctionCall {
+                                        name: "move_forward",
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
+        Located {
+            location: 348,
+            node: Const {
+                name: "ЗЕЛЁНЫЙ_КРИСТАЛЛ",
+                value: 107,
+            },
+        },
+        Located {
+            location: 394,
+            node: Function {
+                name: "is_almost_full",
+                arg: Nothing,
+                returns: Argument,
+                body: [
+                    Located {
+                        location: 421,
+                        node: StatementBlock {
+                            body: [
+                                Located {
+                                    location: 425,
+                                    node: Return {
+                                        expr: Some(
+                                            Located {
+                                                location: 432,
+                                                node: VariableComparison {
+                                                    var: Variable {
+                                                        name: "LOA",
+                                                    },
+                                                    value: Literal {
+                                                        value: 90,
+                                                    },
+                                                    op: GreaterOrEqual,
+                                                },
+                                            },
+                                        ),
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
+        Located {
+            location: 447,
+            node: Function {
+                name: "main",
+                arg: Nothing,
+                returns: Nothing,
+                body: [
+                    Located {
+                        location: 457,
+                        node: StatementBlock {
+                            body: [
+                                Located {
+                                    location: 461,
+                                    node: Loop {
+                                        body: [
+                                            Located {
+                                                location: 466,
+                                                node: StatementBlock {
+                                                    body: [
+                                                        Located {
+                                                            location: 472,
+                                                            node: FunctionCall {
+                                                                name: "move_forward_while_empty",
+                                                            },
+                                                        },
+                                                        Located {
+                                                            location: 505,
+                                                            node: While {
+                                                                condition: Located {
+                                                                    location: 511,
+                                                                    node: VariableComparison {
+                                                                        var: Variable {
+                                                                            name: "CEL",
+                                                                        },
+                                                                        value: Const {
+                                                                            name: "ЗЕЛЁНЫЙ_КРИСТАЛЛ",
+                                                                        },
+                                                                        op: Eq,
+                                                                    },
+                                                                },
+                                                                body: [
+                                                                    Located {
+                                                                        location: 551,
+                                                                        node: StatementBlock {
+                                                                            body: [
+                                                                                Located {
+                                                                                    location: 559,
+                                                                                    node: FunctionCall {
+                                                                                        name: "dig",
+                                                                                    },
+                                                                                },
+                                                                            ],
+                                                                        },
+                                                                    },
+                                                                ],
+                                                            },
+                                                        },
+                                                        Located {
+                                                            location: 576,
+                                                            node: If {
+                                                                condition: Located {
+                                                                    location: 579,
+                                                                    node: VariableComparison {
+                                                                        var: Variable {
+                                                                            name: "LOA",
+                                                                        },
+                                                                        value: Literal {
+                                                                            value: 100,
+                                                                        },
+                                                                        op: GreaterOrEqual,
+                                                                    },
+                                                                },
+                                                                body: [
+                                                                    Located {
+                                                                        location: 591,
+                                                                        node: StatementBlock {
+                                                                            body: [
+                                                                                Located {
+                                                                                    location: 599,
+                                                                                    node: Return {
+                                                                                        expr: None,
+                                                                                    },
+                                                                                },
+                                                                            ],
+                                                                        },
+                                                                    },
+                                                                ],
+                                                                orelse: [
+                                                                    Located {
+                                                                        location: 618,
+                                                                        node: If {
+                                                                            condition: Located {
+                                                                                location: 621,
+                                                                                node: FunctionCallResult {
+                                                                                    name: "is_almost_full",
+                                                                                },
+                                                                            },
+                                                                            body: [
+                                                                                Located {
+                                                                                    location: 638,
+                                                                                    node: StatementBlock {
+                                                                                        body: [
+                                                                                            Located {
+                                                                                                location: 646,
+                                                                                                node: FunctionCall {
+                                                                                                    name: "beep",
+                                                                                                },
+                                                                                            },
+                                                                                        ],
+                                                                                    },
+                                                                                },
+                                                                            ],
+                                                                            orelse: [
+                                                                                Located {
+                                                                                    location: 665,
+                                                                                    node: StatementBlock {
+                                                                                        body: [
+                                                                                            Located {
+                                                                                                location: 673,
+                                                                                                node: FunctionCall {
+                                                                                                    name: "turn_random",
+                                                                                                },
+                                                                                            },
+                                                                                        ],
+                                                                                    },
+                                                                                },
+                                                                            ],
+                                                                        },
+                                                                    },
+                                                                ],
+                                                            },
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
+    ],
+}
+
+

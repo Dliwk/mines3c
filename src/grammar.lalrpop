@@ -1,125 +1,183 @@
-use crate::tok::Tok;
+use crate::tok::{self, Tok};
 use crate::ast;
 
 grammar<'input>(text: &'input str);
 
-pub Program: ast::Program {
+pub Program: ast::Program = {
     <definitions:Definition*> => ast::Program { definitions },
 }
 
-Definition: ast::Definition {
+Definition: ast::Definition = {
     FunctionDefinition,
+    ConstDefinition,
 }
 
-Ident: ...
+Ident: ast::Ident = {
+    <i:"Id"> => i.into(),
+}
 
-FunctionDefinition: ast::Definition {
-    <location:@L> <is_inline:"inline"?> "fn" <name:Ident> <arg:Params> <returns:("->" ReturnType)?> <body:StatementBlock> => {
-        let returns = returns.unwrap_or(ast::ReturnType::Nothing);
-        let node = if is_inline.is_some() {
-            ast::DefinitionKind::Function { name, arg, returns, body }
+FunctionDefinition: ast::Definition = {
+    <location:@L> <is_inline:"inline"?> "fn" <name:Ident> <arg:Params> <returns:("->" ReturnType)?> <block:StatementBlock> => {
+        let returns = match returns {
+            None => ast::ReturnType::Nothing,
+            Some((_, rt)) => rt,
+        };
+        let node = if is_inline.is_none() {
+            ast::DefinitionKind::Function { name, arg, returns, body: vec![block] }
         } else {
             // TODO: error if there are any args or returns
-            ast::DefinitionKind::InlineFunction { name, body }
-        }
+            ast::DefinitionKind::InlineFunction { name, body: vec![block] }
+        };
         ast::Definition::new(location, node)
     }
 }
 
-Params: ast::ArgumentType {
+ConstDefinition: ast::Definition = {
+    <location:@L> "const" <name:Ident> "=" <value:Integer> ";" => {
+        let node = ast::DefinitionKind::Const { name, value };
+        ast::Definition::new(location, node)
+    }
+}
+
+Params: ast::ArgumentType = {
     "(" <arg:ArgumentType?> ")" => {
         arg.unwrap_or(ast::ArgumentType::Nothing)
     }
 }
 
-ReturnType: ast::ReturnType {
+ReturnType: ast::ReturnType = {
     "arg" => ast::ReturnType::Argument,
     "state" => ast::ReturnType::State,
 }
 
-ArgumentType: ast::ArgumentType {
+ArgumentType: ast::ArgumentType = {
     "arg" => ast::ArgumentType::Argument,
     "state" => ast::ArgumentType::State,
 }
 
-StatementBlock: ast::Statement {
+StatementBlock: ast::Statement = {
     <location:@L> "{" <body:Statement*> "}" => {
         ast::Statement::new(
             location,
-            ast::StatementBlock { body }
+            ast::StatementKind::StatementBlock { body }
         )
     }
 }
 
-Statement: ast::Statement {
-    SingleStatement ";",
+Statement: ast::Statement = {
+    <s:SingleStatement> ";" => s,
     StatementBlock,
-}
-
-SingleStatement: ast::Statement {
-    FunctionCallStatement,
     LoopStatement,
     WhileStatement,
     IfStatement,
 }
 
-FunctionCallStatement: ast::Statement {
+SingleStatement: ast::Statement = {
+    FunctionCallStatement,
+    ReturnStatement,
+    InlineCodeStatement,
+}
+
+InlineCodeStatement: ast::Statement = {
+    <location:@L> <body:InlineCode> => {
+        let node = ast::StatementKind::InlineCode { body };
+        ast::Statement::new(location, node)
+    }
+}
+
+InlineCode: ast::InlineCode = {
+    "__code__" "(" <code:"StringLiteral"> ")" => ast::InlineCode { code: code.into() }
+}
+
+ReturnStatement: ast::Statement = {
+    <location:@L> "return" => {
+        ast::Statement::new(location, ast::StatementKind::Return { expr: None })
+    },
+    <location:@L> "return" <expr:Expr> => {
+        ast::Statement::new(location, ast::StatementKind::Return { expr: Some(expr) })
+    },
+}
+
+
+FunctionCallStatement: ast::Statement = {
     <location:@L> <name:Ident> "(" ")" => {
         let node = ast::StatementKind::FunctionCall { name };
         ast::Statement { location, node }
     }
 }
 
-LoopStatement: ast::Statement {
+LoopStatement: ast::Statement = {
     <location:@L> "loop" <block:StatementBlock> => {
         let node = ast::StatementKind::Loop { body: vec![block] };
         ast::Statement::new(location, node)
     }
 }
 
-WhileStatement: ast::Statement {
-    <location:@L> "while" <condition:Condition> <block:StatementBlock> => {
+WhileStatement: ast::Statement = {
+    <location:@L> "while" <condition:Expr> <block:StatementBlock> => {
         let node = ast::StatementKind::While { condition, body: vec![block] };
         ast::Statement::new(location, node)
     }
 }
 
-IfStatement: ast::Statement {
-    <location:@L> "if" <condition:Condition> <block:StatementBlock> <orelse:("else" Statement)?> => {
+IfStatement: ast::Statement = {
+    <location:@L> "if" <condition:Expr> <block:StatementBlock> <orelse:("else" Statement)?> => {
         let orelse = match orelse {
-            Some(stmt) => vec![stmt],
+            Some((_, stmt)) => vec![stmt],
             None => vec![],
-        }
+        };
         let node = ast::StatementKind::If { condition, body: vec![block], orelse };
         ast::Statement::new(location, node)
     }
 }
 
-Condition: ast::Condition {
-    FunctionCallResultCondition,
-    VariableComparisonCondition,
+Expr: Box<ast::Expr> = {
+    FunctionCallResultExpr => Box::new(<>),
+    VariableComparisonExpr => Box::new(<>),
+    InlineCodeExpr => Box::new(<>),
+    NegativeExpr => Box::new(<>),
+    "(" <c:Expr> ")" => c,
 }
 
-FunctionCallResultCondition: ast::Condition {
+NegativeExpr: ast::Expr = {
+    <location:@L> "!" <expr:Expr> => {
+        let node = ast::ExprKind::Negative { expr };
+        ast::Expr::new(location, node)
+    }
+}
+
+InlineCodeExpr: ast::Expr = {
+     <location:@L> <body:InlineCode> => {
+         let node = ast::ExprKind::InlineCode { body };
+         ast::Expr::new(location, node)
+     }
+}
+
+FunctionCallResultExpr: ast::Expr = {
     <location:@L> <name:Ident> "(" ")" => {
         // TODO: check that function returns an argument or a state.
-        let node = ast::ConditionKind::FunctionCallResult { name };
-        ast::Condition::new(location, node)
+        let node = ast::ExprKind::FunctionCallResult { name };
+        ast::Expr::new(location, node)
     }
 }
 
-VariableComparisonCondition: ast::Condition {
-    <location:@L> <var:Variable> <op:ComparisonOp> <value:Integer> => {
-        let node = ast::ConditionKind::VariableComparison { var, value, op };
-        ast::Condition::new(location, node)
+VariableComparisonExpr: ast::Expr = {
+    <location:@L> <var:Variable> <op:ComparisonOp> <value:IntegerExpr> => {
+        let node = ast::ExprKind::VariableComparison { var, value, op };
+        ast::Expr::new(location, node)
     }
 }
 
-Variable: ast::Variable {
-    <v:"Var"> => ast::Variable { name: v }
+IntegerExpr: ast::IntegerExpr = {
+    <value:Integer> => ast::IntegerExpr::Literal { value },
+    <name:Ident> => ast::IntegerExpr::Const { name },
 }
 
-ComparisonOp: ast::ComparisonOp {
+Variable: ast::Variable = {
+    <v:"Var"> => ast::Variable { name: v.into() }
+}
+
+ComparisonOp: ast::ComparisonOp = {
     "==" => ast::ComparisonOp::Eq,
     "!=" => ast::ComparisonOp::NotEq,
     ">" => ast::ComparisonOp::GreaterThan,
@@ -128,7 +186,7 @@ ComparisonOp: ast::ComparisonOp {
     "<=" => ast::ComparisonOp::LessOrEqual,
 }
 
-Integer: ast::Integer {
+Integer: ast::Integer = {
     <i:"Integer"> => i,
 }
 
@@ -146,11 +204,13 @@ extern {
         "else" => Tok::Else,
         "while" => Tok::While,
         "arg" => Tok::Arg,
-        "label" => Tok::Label,
+        "state" => Tok::State,
+        "__code__" => Tok::InlineCode,
+        "const" => Tok::Const,
 
         "Id" => Tok::Id(<&'input str>),
         "Var" => Tok::Var(<&'input str>),
-        // "StringLiteral" => Tok::StringLiteral(<&'input str>),
+        "StringLiteral" => Tok::StringLiteral(<&'input str>),
         "Integer" => Tok::Integer(<u32>),
 
         "(" => Tok::LeftParen,
@@ -166,5 +226,6 @@ extern {
         ">=" => Tok::GreaterOrEqual,
         "!" => Tok::Bang,
         "->" => Tok::RightArrow,
+        "=" => Tok::Assign,
     }
 }

@@ -1,7 +1,7 @@
 //! Abstract Syntax Tree
 
-type Ident = String;
-type Integer = u32;
+pub type Ident = String;
+pub type Integer = u32;
 
 #[derive(Debug, PartialEq)]
 pub struct Located<T> {
@@ -11,29 +11,30 @@ pub struct Located<T> {
 
 impl<T> Located<T> {
     pub fn new(location: usize, node: T) -> Self {
-        Self {
-            location,
-            node,
-        }
+        Self { location, node }
     }
 }
 
+#[derive(Debug, PartialEq)]
 pub struct Program {
-    definitions: Vec<Definition>,
+    pub definitions: Vec<Definition>,
 }
 
+#[derive(Debug, PartialEq)]
 pub enum ArgumentType {
     Nothing,
     Argument,
     State,
 }
 
+#[derive(Debug, PartialEq)]
 pub enum ReturnType {
     Nothing,
     Argument,
     State,
 }
 
+#[derive(Debug, PartialEq)]
 pub enum DefinitionKind {
     Function {
         name: Ident,
@@ -45,10 +46,15 @@ pub enum DefinitionKind {
         name: Ident,
         body: Vec<Statement>,
     },
+    Const {
+        name: Ident,
+        value: Integer,
+    },
 }
 
 pub type Definition = Located<DefinitionKind>;
 
+#[derive(Debug, PartialEq)]
 pub enum StatementKind {
     StatementBlock {
         body: Vec<Statement>,
@@ -60,18 +66,30 @@ pub enum StatementKind {
         body: Vec<Statement>,
     },
     While {
-        condition: Box<Condition>,
+        condition: Box<Expr>,
         body: Vec<Statement>,
     },
     If {
-        condition: Box<Condition>,
+        condition: Box<Expr>,
         body: Vec<Statement>,
         orelse: Vec<Statement>,
     },
+    Return {
+        expr: Option<Box<Expr>>,
+    },
+    InlineCode {
+        body: InlineCode,
+    },
 }
 
-type Statement = Located<StatementKind>;
+#[derive(Debug, PartialEq)]
+pub struct InlineCode {
+    pub code: String,
+}
 
+pub type Statement = Located<StatementKind>;
+
+#[derive(Debug, PartialEq)]
 pub enum ComparisonOp {
     Eq,
     NotEq,
@@ -81,20 +99,33 @@ pub enum ComparisonOp {
     GreaterOrEqual,
 }
 
-pub enum ConditionKind {
+#[derive(Debug, PartialEq)]
+pub enum ExprKind {
     FunctionCallResult {
         name: Ident,
     },
     VariableComparison {
         var: Variable,
-        value: Integer,
+        value: IntegerExpr,
         op: ComparisonOp,
+    },
+    InlineCode {
+        body: InlineCode,
+    },
+    Negative {
+        expr: Box<Expr>,
     },
 }
 
-pub type Condition = Located<ConditionKind>;
+pub type Expr = Located<ExprKind>;
 
-pub struct Variable {
-    name: Ident,
+#[derive(Debug, PartialEq)]
+pub enum IntegerExpr {
+    Literal { value: u32 },
+    Const { name: Ident },
 }
 
+#[derive(Debug, PartialEq)]
+pub struct Variable {
+    pub name: Ident,
+}

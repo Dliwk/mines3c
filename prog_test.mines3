@@ -1,0 +1,68 @@
+// Comment
+
+// --- std lib snippets ---
+inline fn turn_right() {
+  __code__("d");
+}
+inline fn dig() {
+  __code__("Z");
+}
+
+inline fn on_respawn(label) {
+  __code__("#R{label}<");
+}
+
+inline fn check_not_empty() -> arg {
+  __code__("=n");
+}
+
+inline fn check_falling_wd() -> arg {
+  look_wd();
+  return check_falling();
+}
+// --- end ---
+
+fn beep_and_stop() {
+  beep();
+  stop();
+}
+
+fn setup() {
+  on_respawn(beep_and_stop);
+}
+
+fn walk_forever() {
+  repeat 5 times {
+    move_left();
+  }
+  repeat 5 times {
+    move_right();
+  }
+}
+
+fn main() {
+  setup();
+  turn_right();
+  loop {
+    if check_falling_wd() {
+      // Копим опыт.
+      walk_forever();
+    } else {
+      dig_block();
+      move_right();
+    }
+    if $LOA > 95 {
+      // Копим опыт.
+      walk_forever();
+    }
+  }
+}
+
+fn dig_block() {
+  look_forward();
+  while check_not_empty() {
+    dig();
+  }
+}
+
+// vim: set syntax=rust:
