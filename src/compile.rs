@@ -5,6 +5,7 @@ use std::error::Error;
 use std::fmt::{Display, Formatter};
 
 use crate::ast;
+use crate::ast::{ComparisonOp, IntegerExpr};
 
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct CompileError {
@@ -22,6 +23,8 @@ pub enum CompileErrorKind {
     InlineFunctionCyclicDependency(String),
     MainNotFound,
     ReturnInNoReturnContext,
+    UndefinedConstant(String),
+    Unimplemented(&'static str),
 }
 
 impl Display for CompileError {
@@ -34,6 +37,8 @@ impl Display for CompileError {
             InlineFunctionCyclicDependency(name) => format!("Detected cyclic dependency in inline functions ({})", name),
             MainNotFound => format!("Could not find 'main' function"),
             ReturnInNoReturnContext => format!("Cannot use 'return' here"),
+            UndefinedConstant(name) => format!("Undefined constant {}", name),
+            Unimplemented(what) => format!("\"{}\" is not implemented yet", what),
         })
     }
 }
@@ -259,11 +264,51 @@ impl Compiler {
                     result.append(&mut self.compile_statements(body, ctx)?);
                     result.push(format!(">{}|", label));
                 }
-                StatementKind::While { .. } => {
-                    // TODO
+                StatementKind::While { condition, body, negative } => {
+                    let start_label = Self::encode_label(self.next_label);
+                    self.next_label += 1;
+                    let finish_label = Self::encode_label(self.next_label);
+                    self.next_label += 1;
+
+                    // start label
+                    result.push(format!("|{}:", start_label));
+                    // eval expr
+                    result.append(&mut self.compile_expr(*condition)?);
+                    if negative {
+                        // negative: jump to finish if ok
+                        result.push(format!("!?{}<", finish_label));
+                    } else {
+                        // positive: jump to finish if failed
+                        result.push(format!("?{}<", finish_label));
+                    }
+                    // body
+                    result.append(&mut self.compile_statements(body, ctx)?);
+                    // finish label
+                    result.push(format!("|{}:", finish_label));
                 }
                 StatementKind::If { condition, body, orelse, negative } => {
-                    // TODO
+                    let failed_label = Self::encode_label(self.next_label);
+                    self.next_label += 1;
+                    let finish_label = Self::encode_label(self.next_label);
+                    self.next_label += 1;
+                    // eval expr first
+                    result.append(&mut self.compile_expr(*condition)?);
+                    if negative {
+                        // negative: jump to failed if ok
+                        result.push(format!("!?{}<", failed_label));
+                    } else {
+                        // positive: jump to failed if failed
+                        result.push(format!("?{}<", failed_label));
+                    }
+                    // ok branch
+                    result.append(&mut self.compile_statements(body, ctx)?);
+                    // jump to finish
+                    result.push(format!(">{}|", finish_label));
+                    // failed branch
+                    result.push(format!("|{}:", failed_label));
+                    result.append(&mut self.compile_statements(orelse, ctx)?);
+                    // finish label
+                    result.push(format!("|{}:", finish_label));
                 }
                 StatementKind::Return { expr } => {
                     if let Some(expr) = expr {
@@ -315,16 +360,42 @@ impl Compiler {
         Ok(result)
     }
 
+    fn reveal_const(&self, name: &String, loc: usize) -> Result<u32, CompileError> {
+        match self.evaluator.consts.get(name) {
+            None => error(CompileErrorKind::UndefinedConstant(name.clone()), loc),
+            Some(val) => Ok(val.value)
+        }
+    }
+
     fn compile_expr(&mut self, expr: ast::Expr) -> Result<Vec<String>, CompileError> {
         let mut result = vec![];
 
         use ast::ExprKind::*;
         result.append(&mut match expr.node {
             FunctionCallResult { name } => {
+                // TODO check that function returns arg or state
                 self.compile_function_call(name, expr.location)?
             }
-            VariableComparison { .. } => {
-                vec![] // TODO
+            VariableComparison { var, value, op } => {
+                let value = match value {
+                    IntegerExpr::Literal { value } => value,
+                    IntegerExpr::Const { name } => self.reveal_const(&name, expr.location)?,
+                };
+                let op = match op {
+                    ComparisonOp::Eq => "=",
+                    ComparisonOp::NotEq => {
+                        return error(CompileErrorKind::Unimplemented("!= operator"), expr.location);
+                    }
+                    ComparisonOp::LessThan => "<",
+                    ComparisonOp::GreaterThan => ">",
+                    ComparisonOp::LessOrEqual => {
+                        return error(CompileErrorKind::Unimplemented("<= operator"), expr.location);
+                    }
+                    ComparisonOp::GreaterOrEqual => {
+                        return error(CompileErrorKind::Unimplemented(">= operator"), expr.location);
+                    }
+                };
+                vec![format!("({}{}{})", var.name, op, value)]
             }
             InlineCode { body } => {
                 vec![body.code]

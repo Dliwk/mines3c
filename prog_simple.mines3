@@ -15,19 +15,22 @@ inline fn move_down() {
 inline fn stop() {
   __code__("#E");
 }
-
-fn circle() {
-  move_right();
-  move_up();
-  move_left();
-  move_down();
+inline fn look_right() {
+  __code__("[D]");
+}
+inline fn check_empty() {
+  __code__("=e");
 }
 
 fn main() {
-  move_right();
   loop {
-    circle();
+    look_right();
+    if !check_empty() {
+      stop();
+    }
+    move_right();
   }
+  move_left();
   stop();
 }
 
