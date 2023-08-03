@@ -11,13 +11,17 @@ mod tok;
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
-    /// Path to source file.
+    /// Путь к файлу с исходным кодом.
     #[arg(short, long)]
     path: String,
+
+    /// Не использовать стандартную библиотеку
+    #[arg(short, long)]
+    nostdlib: bool,
 }
 
-fn compile(source: &str) -> Result<String> {
-    let tokenizer = tok::Tokenizer::new(source, 0);
+fn compile(source: &str, shift: usize) -> Result<String> {
+    let tokenizer = tok::Tokenizer::new(source, shift);
     let parser = grammar::ProgramParser::new();
     let ast = match parser.parse(tokenizer) {
         Ok(x) => x,
@@ -34,8 +38,18 @@ fn compile(source: &str) -> Result<String> {
 fn main() -> Result<()> {
     let args = Args::parse();
 
-    let text = fs::read_to_string(args.path)?;
-    let prog = compile(text.as_str()).unwrap();
+    let mut text = fs::read_to_string(args.path)?;
+    let stdlib = include_str!("std.mines3");
+
+    let shift = if !args.nostdlib {
+        text = stdlib.to_owned() + "\n" + text.as_str();
+
+        stdlib.len() + 1
+    } else {
+        0
+    };
+
+    let prog = compile(text.as_str(), shift)?;
 
     println!("{}", prog);
 

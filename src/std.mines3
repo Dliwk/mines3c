@@ -1,0 +1,308 @@
+// Стаднартная библиотека для компилятора mines3c
+//
+// vim: syntax=rust:
+
+inline fn move_left() {
+  __code__("^A");
+}
+inline fn move_right() {
+  __code__("^D");
+}
+inline fn move_up() {
+  __code__("^W");
+}
+inline fn move_down() {
+  __code__("^S");
+}
+inline fn move_forward() {
+  __code__("^F");
+}
+
+inline fn look_left() {
+  __code__("a");
+}
+inline fn look_right() {
+  __code__("d");
+}
+inline fn look_up() {
+  __code__("w");
+}
+inline fn look_down() {
+  __code__("s");
+}
+
+inline fn turn_left() {
+  __code__("CCW;");
+}
+inline fn turn_right() {
+  __code__("CW;");
+}
+inline fn turn_random() {
+  __code__("RAND;");
+}
+
+inline fn dig() {
+  __code__("z");
+}
+inline fn build() {
+  __code__("b");
+}
+inline fn geo() {
+  __code__("g");
+}
+inline fn build_road() {
+  __code__("r");
+}
+inline fn heal() {
+  __code__("h");
+}
+inline fn build_quad() {
+  __code__("q");
+}
+
+inline fn beep() {
+  __code__("BEEP;");
+}
+
+inline fn select_up() {
+  __code__("[W]");
+}
+inline fn select_down() {
+  __code__("[S]");
+}
+inline fn select_left() {
+  __code__("[A]");
+}
+inline fn select_right() {
+  __code__("[D]");
+}
+inline fn select_up_left() {
+  __code__("[WA]");
+}
+inline fn select_down_left() {
+  __code__("[SA]");
+}
+inline fn select_up_right() {
+  __code__("[WD]");
+}
+inline fn select_down_right() {
+  __code__("[SD]");
+}
+inline fn select_forward() {
+  __code__("[F]");
+}
+inline fn select_right_hand() {
+  __code__("[l]");
+}
+inline fn select_left_hand() {
+  __code__("[r]");
+}
+
+inline fn selection_move_up() {
+  __code__("[w]");
+}
+inline fn selection_move_down() {
+  __code__("[s]");
+}
+inline fn selection_move_left() {
+  __code__("[a]");
+}
+inline fn selection_move_right() {
+  __code__("[d]");
+}
+inline fn selection_move_forward() {
+  __code__("[f]");
+}
+
+inline fn macro_dig() {
+  __code__("DIGG;");
+}
+inline fn macro_build() {
+  __code__("BUILD;");
+}
+inline fn macro_heal() {
+  __code__("HEAL;");
+}
+inline fn macro_mine() {
+  __code__("MINE;");
+}
+
+inline fn check_not_empty() {
+  __code__("=n");
+}
+inline fn check_empty() {
+  __code__("=e");
+}
+inline fn check_falling() {
+  __code__("=f");
+}
+inline fn check_crystal() {
+  __code__("=c");
+}
+inline fn check_alive_crystal() {
+  __code__("=a");
+}
+inline fn check_boulder() {
+  __code__("=b");
+}
+inline fn check_sand() {
+  __code__("=s");
+}
+inline fn check_slime() {
+  __code__("=A");
+}
+inline fn check_breakable() {
+  __code__("=k");
+}
+inline fn check_unbreakable() {
+  __code__("=d");
+}
+inline fn check_black_rock() {
+  __code__("=B");
+}
+inline fn check_red_rock() {
+  __code__("=K");
+}
+inline fn check_quad() {
+  __code__("=q");
+}
+inline fn check_green_block() {
+  __code__("=g");
+}
+inline fn check_yellow_block() {
+  __code__("=y");
+}
+inline fn check_red_block() {
+  __code__("=r");
+}
+inline fn check_pillar() {
+  __code__("=o");
+}
+inline fn check_road() {
+  __code__("=R");
+}
+inline fn check_box() {
+  __code__("=x");
+}
+
+inline fn quit() {
+  __code__("#E");
+}
+
+// HACK: в идеале эта функция должна принимать другую функцию как аргумент,
+//       но сейчас нам придется просто вставить ее в начало функции,
+//       которую мы выставляем как обработчик возрождения.
+inline fn setup_respawn_handler() {
+  __code__("#RRES<");
+  __code__("|RES:");
+}
+
+inline fn bool_logic_or() {
+  __code__("OR");
+}
+inline fn bool_logic_and() {
+  __code__("AND");
+}
+
+inline fn flip() {
+  __code__("FLIP;");
+}
+
+inline fn check_inside_cannon() {
+  __code__("=G");
+}
+inline fn fill_cannon() {
+  __code__("FILL;");
+}
+
+inline fn check_hp_not_full() {
+  __code__("=hp-");
+}
+inline fn check_hp_less_than_half() {
+  __code__("=hp50");
+}
+
+inline fn autodig_on() {
+  __code__("AUT+");
+}
+inline fn autodig_off() {
+  __code__("AUT-");
+}
+inline fn aggression_on() {
+  __code__("AGR+");
+}
+inline fn aggression_off() {
+  __code__("AGR-");
+}
+
+inline fn hand_mode_on() {
+  __code__("Hand+");
+}
+inline fn hand_mode_off() {
+  __code__("Hand-");
+}
+
+
+// ===============================================
+// higher-level functions
+
+// DIRECTION
+//    2
+//  1   3
+//    0
+//
+
+fn select_backward() {
+  if $DIR == 0 {
+    select_up();
+  } else if $DIR == 1 {
+    select_right();
+  } else if $DIR == 2 {
+    select_down();
+  } else { // $DIR == 3
+    select_left();
+  }
+}
+
+fn selection_move_backward() {
+  if $DIR == 0 {
+    selection_move_up();
+  } else if $DIR == 1 {
+    selection_move_right();
+  } else if $DIR == 2 {
+    selection_move_down();
+  } else { // $DIR == 3
+    selection_move_left();
+  }
+}
+
+fn selection_move_left_hand() {
+  if $DIR == 0 {
+    selection_move_right();
+  } else if $DIR == 1 {
+    selection_move_down();
+  } else if $DIR == 2 {
+    selection_move_left();
+  } else { // $DIR == 3
+    selection_move_up();
+  }
+}
+
+fn selection_move_right_hand() {
+  if $DIR == 0 {
+    selection_move_left();
+  } else if $DIR == 1 {
+    selection_move_up();
+  } else if $DIR == 2 {
+    selection_move_right();
+  } else { // $DIR == 3
+    selection_move_down();
+  }
+}
+
+fn turn_around() {
+  turn_left();
+  turn_left();
+}
+
+

@@ -332,14 +332,13 @@ impl Compiler {
     }
 
     fn compile_function_call(&mut self, name: String, loc: usize) -> Result<Vec<String>, CompileError> {
+        if !self.functions.contains_key(&name) {
+            return error(CompileErrorKind::UndefinedFunction(name), loc);
+        }
+
         self.compile_function_if_inline(&name)?;
 
-        let func = match self.functions.get(&name) {
-            Some(f) => f,
-            None => {
-                return error(CompileErrorKind::UndefinedFunction(name), loc);
-            }
-        };
+        let func = self.functions.get(&name).unwrap();
 
         let mut result = vec![];
 
