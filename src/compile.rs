@@ -159,13 +159,13 @@ impl Compiler {
                             compiled: false,
                             compiling: false,
                             inline: true,
-                            label: self.next_label,
-                            // Calling context should never be used for inline function
+                            // Inline functions do not use labels.
+                            label: 0,
+                            // Calling context should never be used for inline function.
                             calling_context: CallingContext::PassNothing,
                             code: vec![],
                         },
                     );
-                    self.next_label += 1;
                 }
                 Function(f) => {
                     self.functions.insert(
