@@ -68,11 +68,13 @@ pub enum StatementKind {
     While {
         condition: Box<Expr>,
         body: Vec<Statement>,
+        negative: bool,
     },
     If {
         condition: Box<Expr>,
         body: Vec<Statement>,
         orelse: Vec<Statement>,
+        negative: bool,
     },
     Return {
         expr: Option<Box<Expr>>,
@@ -111,9 +113,6 @@ pub enum ExprKind {
     },
     InlineCode {
         body: InlineCode,
-    },
-    Negative {
-        expr: Box<Expr>,
     },
 }
 

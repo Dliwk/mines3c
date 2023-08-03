@@ -15,13 +15,19 @@ pub struct Error {
 
 impl Display for Error {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "Error({:?}) at {}: {}", self.code, self.location, match self.code {
-            UnrecognizedToken => "unrecognized token",
-            UnterminatedStringLiteral => "unterminated string literal",
-            InvalidVariable => "invalid variable name",
-            IntegerTooBig => "integer can't fit in u32",
-            // InlineFnHasArgOrReturn => "inline function has an argument or returns something",
-        })
+        write!(
+            f,
+            "Error({:?}) at {}: {}",
+            self.code,
+            self.location,
+            match self.code {
+                UnrecognizedToken => "unrecognized token",
+                UnterminatedStringLiteral => "unterminated string literal",
+                InvalidVariable => "invalid variable name",
+                IntegerTooBig => "integer can't fit in u32",
+                // InlineFnHasArgOrReturn => "inline function has an argument or returns something",
+            }
+        )
     }
 }
 
@@ -211,7 +217,7 @@ impl<'input> Tokenizer<'input> {
                         self.bump();
                         Some(Ok((idx, Equal, idx1 + 1)))
                     }
-                    _ => Some(Ok((idx, Assign, idx + 1)))
+                    _ => Some(Ok((idx, Assign, idx + 1))),
                 },
                 Some((idx, '-')) => match self.bump() {
                     Some((idx1, '>')) => {

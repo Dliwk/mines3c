@@ -1,0 +1,34 @@
+// comment
+
+inline fn move_right() {
+  __code__("^D");
+}
+inline fn move_up() {
+  __code__("^W");
+}
+inline fn move_left() {
+  __code__("^A");
+}
+inline fn move_down() {
+  __code__("^S");
+}
+inline fn stop() {
+  __code__("#E");
+}
+
+fn circle() {
+  move_right();
+  move_up();
+  move_left();
+  move_down();
+}
+
+fn main() {
+  move_right();
+  loop {
+    circle();
+  }
+  stop();
+}
+
+// vim: syntax=rust:

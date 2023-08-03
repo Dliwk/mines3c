@@ -114,19 +114,21 @@ LoopStatement: ast::Statement = {
 }
 
 WhileStatement: ast::Statement = {
-    <location:@L> "while" <condition:Expr> <block:StatementBlock> => {
-        let node = ast::StatementKind::While { condition, body: vec![block] };
+    <location:@L> "while" <negative:"!"?> <condition:Expr> <block:StatementBlock> => {
+        let negative = negative.is_some();
+        let node = ast::StatementKind::While { condition, body: vec![block], negative };
         ast::Statement::new(location, node)
     }
 }
 
 IfStatement: ast::Statement = {
-    <location:@L> "if" <condition:Expr> <block:StatementBlock> <orelse:("else" Statement)?> => {
+    <location:@L> "if" <negative:"!"?> <condition:Expr> <block:StatementBlock> <orelse:("else" Statement)?> => {
         let orelse = match orelse {
             Some((_, stmt)) => vec![stmt],
             None => vec![],
         };
-        let node = ast::StatementKind::If { condition, body: vec![block], orelse };
+        let negative = negative.is_some();
+        let node = ast::StatementKind::If { condition, body: vec![block], orelse, negative };
         ast::Statement::new(location, node)
     }
 }
@@ -135,16 +137,9 @@ Expr: Box<ast::Expr> = {
     FunctionCallResultExpr => Box::new(<>),
     VariableComparisonExpr => Box::new(<>),
     InlineCodeExpr => Box::new(<>),
-    NegativeExpr => Box::new(<>),
     "(" <c:Expr> ")" => c,
 }
 
-NegativeExpr: ast::Expr = {
-    <location:@L> "!" <expr:Expr> => {
-        let node = ast::ExprKind::Negative { expr };
-        ast::Expr::new(location, node)
-    }
-}
 
 InlineCodeExpr: ast::Expr = {
      <location:@L> <body:InlineCode> => {
