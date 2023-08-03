@@ -1,5 +1,5 @@
 // auto-generated: "lalrpop 0.20.0"
-// sha3: 41a173ec884c7243c1b14dbb92056b31b65767807bc32db2770d88a56c907e1f
+// sha3: 68c5b172b9dbe270062ba8780cf803ec324a73bd6bac89ef55f46974f618da65
 use crate::tok::{self, Tok};
 use crate::ast;
 #[allow(unused_extern_crates)]
@@ -604,7 +604,6 @@ mod ___parse___Program {
     pub(crate) struct ___StateMachine<'input>
     where 
     {
-        text: &'input str,
         ___phantom: core::marker::PhantomData<(&'input ())>,
     }
     impl<'input> ___state_machine::ParserDefinition for ___StateMachine<'input>
@@ -689,7 +688,6 @@ mod ___parse___Program {
             symbols: &mut alloc::vec::Vec<___state_machine::SymbolTriple<Self>>,
         ) -> Option<___state_machine::ParseResult<Self>> {
             ___reduce(
-                self.text,
                 action,
                 start_location,
                 states,
@@ -1250,7 +1248,6 @@ mod ___parse___Program {
             ___TOKENS: IntoIterator<Item=___TOKEN>,
         >(
             &self,
-            text: &'input str,
             ___tokens0: ___TOKENS,
         ) -> Result<ast::Program, ___lalrpop_util::ParseError<usize, Tok<'input>, tok::Error>>
         {
@@ -1258,7 +1255,6 @@ mod ___parse___Program {
             let mut ___tokens = ___tokens.map(|t| ___ToTriple::to_triple(t));
             ___state_machine::Parser::drive(
                 ___StateMachine {
-                    text,
                     ___phantom: core::marker::PhantomData::<(&())>,
                 },
                 ___tokens,
@@ -1301,7 +1297,6 @@ mod ___parse___Program {
     pub(crate) fn ___reduce<
         'input,
     >(
-        text: &'input str,
         ___action: i8,
         ___lookahead_start: Option<&usize>,
         ___states: &mut alloc::vec::Vec<i8>,
@@ -1311,239 +1306,239 @@ mod ___parse___Program {
     {
         let (___pop_states, ___nonterminal) = match ___action {
             0 => {
-                ___reduce0(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce0(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             1 => {
-                ___reduce1(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce1(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             2 => {
-                ___reduce2(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce2(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             3 => {
-                ___reduce3(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce3(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             4 => {
-                ___reduce4(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce4(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             5 => {
-                ___reduce5(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce5(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             6 => {
-                ___reduce6(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce6(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             7 => {
-                ___reduce7(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce7(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             8 => {
-                ___reduce8(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce8(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             9 => {
-                ___reduce9(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce9(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             10 => {
-                ___reduce10(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce10(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             11 => {
-                ___reduce11(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce11(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             12 => {
-                ___reduce12(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce12(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             13 => {
-                ___reduce13(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce13(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             14 => {
-                ___reduce14(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce14(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             15 => {
-                ___reduce15(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce15(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             16 => {
-                ___reduce16(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce16(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             17 => {
-                ___reduce17(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce17(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             18 => {
-                ___reduce18(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce18(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             19 => {
-                ___reduce19(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce19(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             20 => {
-                ___reduce20(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce20(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             21 => {
-                ___reduce21(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce21(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             22 => {
-                ___reduce22(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce22(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             23 => {
-                ___reduce23(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce23(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             24 => {
-                ___reduce24(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce24(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             25 => {
-                ___reduce25(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce25(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             26 => {
-                ___reduce26(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce26(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             27 => {
-                ___reduce27(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce27(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             28 => {
-                ___reduce28(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce28(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             29 => {
-                ___reduce29(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce29(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             30 => {
-                ___reduce30(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce30(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             31 => {
-                ___reduce31(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce31(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             32 => {
-                ___reduce32(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce32(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             33 => {
-                ___reduce33(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce33(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             34 => {
-                ___reduce34(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce34(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             35 => {
-                ___reduce35(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce35(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             36 => {
-                ___reduce36(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce36(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             37 => {
-                ___reduce37(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce37(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             38 => {
-                ___reduce38(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce38(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             39 => {
-                ___reduce39(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce39(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             40 => {
-                ___reduce40(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce40(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             41 => {
-                ___reduce41(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce41(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             42 => {
-                ___reduce42(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce42(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             43 => {
-                ___reduce43(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce43(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             44 => {
-                ___reduce44(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce44(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             45 => {
-                ___reduce45(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce45(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             46 => {
-                ___reduce46(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce46(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             47 => {
-                ___reduce47(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce47(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             48 => {
-                ___reduce48(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce48(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             49 => {
-                ___reduce49(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce49(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             50 => {
-                ___reduce50(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce50(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             51 => {
-                ___reduce51(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce51(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             52 => {
-                ___reduce52(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce52(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             53 => {
-                ___reduce53(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce53(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             54 => {
-                ___reduce54(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce54(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             55 => {
-                ___reduce55(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce55(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             56 => {
-                ___reduce56(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce56(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             57 => {
-                ___reduce57(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce57(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             58 => {
-                ___reduce58(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce58(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             59 => {
-                ___reduce59(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce59(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             60 => {
-                ___reduce60(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce60(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             61 => {
-                ___reduce61(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce61(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             62 => {
-                ___reduce62(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce62(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             63 => {
-                ___reduce63(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce63(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             64 => {
-                ___reduce64(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce64(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             65 => {
-                ___reduce65(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce65(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             66 => {
-                ___reduce66(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce66(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             67 => {
-                ___reduce67(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce67(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             68 => {
-                ___reduce68(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce68(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             69 => {
-                ___reduce69(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce69(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             70 => {
-                ___reduce70(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce70(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             71 => {
-                ___reduce71(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce71(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             72 => {
-                ___reduce72(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce72(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             73 => {
-                ___reduce73(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce73(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             74 => {
-                ___reduce74(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce74(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             75 => {
-                ___reduce75(text, ___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
+                ___reduce75(___lookahead_start, ___symbols, core::marker::PhantomData::<(&())>)
             }
             76 => {
                 // ___Program = Program => ActionFn(0);
                 let ___sym0 = ___pop_Variant21(___symbols);
                 let ___start = ___sym0.0;
                 let ___end = ___sym0.2;
-                let ___nt = super::___action0::<>(text, ___sym0);
+                let ___nt = super::___action0::<>(___sym0);
                 return Some(Ok(___nt));
             }
             _ => panic!("invalid action code {}", ___action)
@@ -1837,7 +1832,6 @@ mod ___parse___Program {
     pub(crate) fn ___reduce0<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -1847,14 +1841,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action49::<>(text, ___sym0);
+        let ___nt = super::___action49::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant3(___nt), ___end));
         (1, 0)
     }
     pub(crate) fn ___reduce1<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -1863,14 +1856,13 @@ mod ___parse___Program {
         // "!"? =  => ActionFn(50);
         let ___start = ___lookahead_start.cloned().or_else(|| ___symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let ___end = ___start.clone();
-        let ___nt = super::___action50::<>(text, &___start, &___end);
+        let ___nt = super::___action50::<>(&___start, &___end);
         ___symbols.push((___start, ___Symbol::Variant3(___nt), ___end));
         (0, 0)
     }
     pub(crate) fn ___reduce2<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -1880,14 +1872,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action58::<>(text, ___sym0);
+        let ___nt = super::___action58::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant3(___nt), ___end));
         (1, 1)
     }
     pub(crate) fn ___reduce3<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -1896,14 +1887,13 @@ mod ___parse___Program {
         // "inline"? =  => ActionFn(59);
         let ___start = ___lookahead_start.cloned().or_else(|| ___symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let ___end = ___start.clone();
-        let ___nt = super::___action59::<>(text, &___start, &___end);
+        let ___nt = super::___action59::<>(&___start, &___end);
         ___symbols.push((___start, ___Symbol::Variant3(___nt), ___end));
         (0, 1)
     }
     pub(crate) fn ___reduce4<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -1915,14 +1905,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action57::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action57::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant4(___nt), ___end));
         (2, 2)
     }
     pub(crate) fn ___reduce5<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -1934,14 +1923,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action73::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action73::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant5(___nt), ___end));
         (2, 3)
     }
     pub(crate) fn ___reduce6<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -1950,14 +1938,13 @@ mod ___parse___Program {
         // ("->" ReturnType)? =  => ActionFn(56);
         let ___start = ___lookahead_start.cloned().or_else(|| ___symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let ___end = ___start.clone();
-        let ___nt = super::___action56::<>(text, &___start, &___end);
+        let ___nt = super::___action56::<>(&___start, &___end);
         ___symbols.push((___start, ___Symbol::Variant5(___nt), ___end));
         (0, 3)
     }
     pub(crate) fn ___reduce7<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -1969,14 +1956,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action48::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action48::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant6(___nt), ___end));
         (2, 4)
     }
     pub(crate) fn ___reduce8<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -1988,14 +1974,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action78::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action78::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant7(___nt), ___end));
         (2, 5)
     }
     pub(crate) fn ___reduce9<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2004,14 +1989,13 @@ mod ___parse___Program {
         // ("else" Statement)? =  => ActionFn(47);
         let ___start = ___lookahead_start.cloned().or_else(|| ___symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let ___end = ___start.clone();
-        let ___nt = super::___action47::<>(text, &___start, &___end);
+        let ___nt = super::___action47::<>(&___start, &___end);
         ___symbols.push((___start, ___Symbol::Variant7(___nt), ___end));
         (0, 5)
     }
     pub(crate) fn ___reduce10<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2020,14 +2004,13 @@ mod ___parse___Program {
         // @L =  => ActionFn(60);
         let ___start = ___lookahead_start.cloned().or_else(|| ___symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let ___end = ___start.clone();
-        let ___nt = super::___action60::<>(text, &___start, &___end);
+        let ___nt = super::___action60::<>(&___start, &___end);
         ___symbols.push((___start, ___Symbol::Variant8(___nt), ___end));
         (0, 6)
     }
     pub(crate) fn ___reduce11<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2037,14 +2020,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action10::<>(text, ___sym0);
+        let ___nt = super::___action10::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant9(___nt), ___end));
         (1, 7)
     }
     pub(crate) fn ___reduce12<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2054,14 +2036,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action11::<>(text, ___sym0);
+        let ___nt = super::___action11::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant9(___nt), ___end));
         (1, 7)
     }
     pub(crate) fn ___reduce13<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2071,14 +2052,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant9(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action53::<>(text, ___sym0);
+        let ___nt = super::___action53::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant10(___nt), ___end));
         (1, 8)
     }
     pub(crate) fn ___reduce14<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2087,14 +2067,13 @@ mod ___parse___Program {
         // ArgumentType? =  => ActionFn(54);
         let ___start = ___lookahead_start.cloned().or_else(|| ___symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let ___end = ___start.clone();
-        let ___nt = super::___action54::<>(text, &___start, &___end);
+        let ___nt = super::___action54::<>(&___start, &___end);
         ___symbols.push((___start, ___Symbol::Variant10(___nt), ___end));
         (0, 8)
     }
     pub(crate) fn ___reduce15<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2104,14 +2083,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action39::<>(text, ___sym0);
+        let ___nt = super::___action39::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant11(___nt), ___end));
         (1, 9)
     }
     pub(crate) fn ___reduce16<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2121,14 +2099,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action40::<>(text, ___sym0);
+        let ___nt = super::___action40::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant11(___nt), ___end));
         (1, 9)
     }
     pub(crate) fn ___reduce17<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2138,14 +2115,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action41::<>(text, ___sym0);
+        let ___nt = super::___action41::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant11(___nt), ___end));
         (1, 9)
     }
     pub(crate) fn ___reduce18<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2155,14 +2131,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action42::<>(text, ___sym0);
+        let ___nt = super::___action42::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant11(___nt), ___end));
         (1, 9)
     }
     pub(crate) fn ___reduce19<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2172,14 +2147,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action43::<>(text, ___sym0);
+        let ___nt = super::___action43::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant11(___nt), ___end));
         (1, 9)
     }
     pub(crate) fn ___reduce20<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2189,14 +2163,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action44::<>(text, ___sym0);
+        let ___nt = super::___action44::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant11(___nt), ___end));
         (1, 9)
     }
     pub(crate) fn ___reduce21<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2211,14 +2184,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym4.2;
-        let ___nt = super::___action83::<>(text, ___sym0, ___sym1, ___sym2, ___sym3, ___sym4);
+        let ___nt = super::___action83::<>(___sym0, ___sym1, ___sym2, ___sym3, ___sym4);
         ___symbols.push((___start, ___Symbol::Variant12(___nt), ___end));
         (5, 10)
     }
     pub(crate) fn ___reduce22<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2228,14 +2200,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant12(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action2::<>(text, ___sym0);
+        let ___nt = super::___action2::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant12(___nt), ___end));
         (1, 11)
     }
     pub(crate) fn ___reduce23<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2245,14 +2216,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant12(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action3::<>(text, ___sym0);
+        let ___nt = super::___action3::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant12(___nt), ___end));
         (1, 11)
     }
     pub(crate) fn ___reduce24<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2261,14 +2231,13 @@ mod ___parse___Program {
         // Definition* =  => ActionFn(61);
         let ___start = ___lookahead_start.cloned().or_else(|| ___symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let ___end = ___start.clone();
-        let ___nt = super::___action61::<>(text, &___start, &___end);
+        let ___nt = super::___action61::<>(&___start, &___end);
         ___symbols.push((___start, ___Symbol::Variant13(___nt), ___end));
         (0, 12)
     }
     pub(crate) fn ___reduce25<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2278,14 +2247,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant13(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action62::<>(text, ___sym0);
+        let ___nt = super::___action62::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant13(___nt), ___end));
         (1, 12)
     }
     pub(crate) fn ___reduce26<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2295,14 +2263,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant12(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action63::<>(text, ___sym0);
+        let ___nt = super::___action63::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant13(___nt), ___end));
         (1, 13)
     }
     pub(crate) fn ___reduce27<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2314,14 +2281,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant13(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action64::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action64::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant13(___nt), ___end));
         (2, 13)
     }
     pub(crate) fn ___reduce28<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2331,14 +2297,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant15(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action29::<>(text, ___sym0);
+        let ___nt = super::___action29::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant14(___nt), ___end));
         (1, 14)
     }
     pub(crate) fn ___reduce29<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2348,14 +2313,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant15(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action30::<>(text, ___sym0);
+        let ___nt = super::___action30::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant14(___nt), ___end));
         (1, 14)
     }
     pub(crate) fn ___reduce30<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2365,14 +2329,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant15(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action31::<>(text, ___sym0);
+        let ___nt = super::___action31::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant14(___nt), ___end));
         (1, 14)
     }
     pub(crate) fn ___reduce31<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2385,14 +2348,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym2.2;
-        let ___nt = super::___action32::<>(text, ___sym0, ___sym1, ___sym2);
+        let ___nt = super::___action32::<>(___sym0, ___sym1, ___sym2);
         ___symbols.push((___start, ___Symbol::Variant14(___nt), ___end));
         (3, 14)
     }
     pub(crate) fn ___reduce32<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2405,14 +2367,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant17(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym2.2;
-        let ___nt = super::___action84::<>(text, ___sym0, ___sym1, ___sym2);
+        let ___nt = super::___action84::<>(___sym0, ___sym1, ___sym2);
         ___symbols.push((___start, ___Symbol::Variant15(___nt), ___end));
         (3, 15)
     }
     pub(crate) fn ___reduce33<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2425,14 +2386,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant17(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym2.2;
-        let ___nt = super::___action85::<>(text, ___sym0, ___sym1, ___sym2);
+        let ___nt = super::___action85::<>(___sym0, ___sym1, ___sym2);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (3, 16)
     }
     pub(crate) fn ___reduce34<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2449,14 +2409,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym6.2;
-        let ___nt = super::___action86::<>(text, ___sym0, ___sym1, ___sym2, ___sym3, ___sym4, ___sym5, ___sym6);
+        let ___nt = super::___action86::<>(___sym0, ___sym1, ___sym2, ___sym3, ___sym4, ___sym5, ___sym6);
         ___symbols.push((___start, ___Symbol::Variant12(___nt), ___end));
         (7, 17)
     }
     pub(crate) fn ___reduce35<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2471,14 +2430,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym4.2;
-        let ___nt = super::___action87::<>(text, ___sym0, ___sym1, ___sym2, ___sym3, ___sym4);
+        let ___nt = super::___action87::<>(___sym0, ___sym1, ___sym2, ___sym3, ___sym4);
         ___symbols.push((___start, ___Symbol::Variant12(___nt), ___end));
         (5, 17)
     }
     pub(crate) fn ___reduce36<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2494,14 +2452,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym5.2;
-        let ___nt = super::___action88::<>(text, ___sym0, ___sym1, ___sym2, ___sym3, ___sym4, ___sym5);
+        let ___nt = super::___action88::<>(___sym0, ___sym1, ___sym2, ___sym3, ___sym4, ___sym5);
         ___symbols.push((___start, ___Symbol::Variant12(___nt), ___end));
         (6, 17)
     }
     pub(crate) fn ___reduce37<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2515,14 +2472,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym3.2;
-        let ___nt = super::___action89::<>(text, ___sym0, ___sym1, ___sym2, ___sym3);
+        let ___nt = super::___action89::<>(___sym0, ___sym1, ___sym2, ___sym3);
         ___symbols.push((___start, ___Symbol::Variant12(___nt), ___end));
         (4, 17)
     }
     pub(crate) fn ___reduce38<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2532,14 +2488,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant1(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action4::<>(text, ___sym0);
+        let ___nt = super::___action4::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant17(___nt), ___end));
         (1, 18)
     }
     pub(crate) fn ___reduce39<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2555,14 +2510,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym5.2;
-        let ___nt = super::___action90::<>(text, ___sym0, ___sym1, ___sym2, ___sym3, ___sym4, ___sym5);
+        let ___nt = super::___action90::<>(___sym0, ___sym1, ___sym2, ___sym3, ___sym4, ___sym5);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (6, 19)
     }
     pub(crate) fn ___reduce40<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2576,14 +2530,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym3.2;
-        let ___nt = super::___action91::<>(text, ___sym0, ___sym1, ___sym2, ___sym3);
+        let ___nt = super::___action91::<>(___sym0, ___sym1, ___sym2, ___sym3);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (4, 19)
     }
     pub(crate) fn ___reduce41<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2598,14 +2551,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym4.2;
-        let ___nt = super::___action92::<>(text, ___sym0, ___sym1, ___sym2, ___sym3, ___sym4);
+        let ___nt = super::___action92::<>(___sym0, ___sym1, ___sym2, ___sym3, ___sym4);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (5, 19)
     }
     pub(crate) fn ___reduce42<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2618,14 +2570,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym2.2;
-        let ___nt = super::___action93::<>(text, ___sym0, ___sym1, ___sym2);
+        let ___nt = super::___action93::<>(___sym0, ___sym1, ___sym2);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (3, 19)
     }
     pub(crate) fn ___reduce43<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2639,14 +2590,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym3.2;
-        let ___nt = super::___action22::<>(text, ___sym0, ___sym1, ___sym2, ___sym3);
+        let ___nt = super::___action22::<>(___sym0, ___sym1, ___sym2, ___sym3);
         ___symbols.push((___start, ___Symbol::Variant18(___nt), ___end));
         (4, 20)
     }
     pub(crate) fn ___reduce44<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2656,14 +2606,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant18(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action94::<>(text, ___sym0);
+        let ___nt = super::___action94::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant15(___nt), ___end));
         (1, 21)
     }
     pub(crate) fn ___reduce45<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2673,14 +2622,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant18(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action95::<>(text, ___sym0);
+        let ___nt = super::___action95::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (1, 22)
     }
     pub(crate) fn ___reduce46<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2690,14 +2638,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant2(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action45::<>(text, ___sym0);
+        let ___nt = super::___action45::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant19(___nt), ___end));
         (1, 23)
     }
     pub(crate) fn ___reduce47<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2707,14 +2654,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant19(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action36::<>(text, ___sym0);
+        let ___nt = super::___action36::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant20(___nt), ___end));
         (1, 24)
     }
     pub(crate) fn ___reduce48<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2724,14 +2670,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant17(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action37::<>(text, ___sym0);
+        let ___nt = super::___action37::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant20(___nt), ___end));
         (1, 24)
     }
     pub(crate) fn ___reduce49<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2743,14 +2688,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action96::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action96::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (2, 25)
     }
     pub(crate) fn ___reduce50<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2763,14 +2707,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym2.2;
-        let ___nt = super::___action103::<>(text, ___sym0, ___sym1, ___sym2);
+        let ___nt = super::___action103::<>(___sym0, ___sym1, ___sym2);
         ___symbols.push((___start, ___Symbol::Variant9(___nt), ___end));
         (3, 26)
     }
     pub(crate) fn ___reduce51<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2782,14 +2725,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action104::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action104::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant9(___nt), ___end));
         (2, 26)
     }
     pub(crate) fn ___reduce52<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2798,14 +2740,13 @@ mod ___parse___Program {
         // Program =  => ActionFn(105);
         let ___start = ___lookahead_start.cloned().or_else(|| ___symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let ___end = ___start.clone();
-        let ___nt = super::___action105::<>(text, &___start, &___end);
+        let ___nt = super::___action105::<>(&___start, &___end);
         ___symbols.push((___start, ___Symbol::Variant21(___nt), ___end));
         (0, 27)
     }
     pub(crate) fn ___reduce53<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2815,14 +2756,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant13(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action106::<>(text, ___sym0);
+        let ___nt = super::___action106::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant21(___nt), ___end));
         (1, 27)
     }
     pub(crate) fn ___reduce54<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2832,14 +2772,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action97::<>(text, ___sym0);
+        let ___nt = super::___action97::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (1, 28)
     }
     pub(crate) fn ___reduce55<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2851,14 +2790,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action98::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action98::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (2, 28)
     }
     pub(crate) fn ___reduce56<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2868,14 +2806,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action8::<>(text, ___sym0);
+        let ___nt = super::___action8::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant22(___nt), ___end));
         (1, 29)
     }
     pub(crate) fn ___reduce57<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2885,14 +2822,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action9::<>(text, ___sym0);
+        let ___nt = super::___action9::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant22(___nt), ___end));
         (1, 29)
     }
     pub(crate) fn ___reduce58<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2902,14 +2838,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant16(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action18::<>(text, ___sym0);
+        let ___nt = super::___action18::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (1, 30)
     }
     pub(crate) fn ___reduce59<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2919,14 +2854,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant16(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action19::<>(text, ___sym0);
+        let ___nt = super::___action19::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (1, 30)
     }
     pub(crate) fn ___reduce60<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2936,14 +2870,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant16(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action20::<>(text, ___sym0);
+        let ___nt = super::___action20::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (1, 30)
     }
     pub(crate) fn ___reduce61<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2955,14 +2888,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant16(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action13::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action13::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (2, 31)
     }
     pub(crate) fn ___reduce62<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2972,14 +2904,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant16(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action14::<>(text, ___sym0);
+        let ___nt = super::___action14::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (1, 31)
     }
     pub(crate) fn ___reduce63<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -2989,14 +2920,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant16(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action15::<>(text, ___sym0);
+        let ___nt = super::___action15::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (1, 31)
     }
     pub(crate) fn ___reduce64<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3006,14 +2936,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant16(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action16::<>(text, ___sym0);
+        let ___nt = super::___action16::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (1, 31)
     }
     pub(crate) fn ___reduce65<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3023,14 +2952,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant16(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action17::<>(text, ___sym0);
+        let ___nt = super::___action17::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (1, 31)
     }
     pub(crate) fn ___reduce66<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3039,14 +2967,13 @@ mod ___parse___Program {
         // Statement* =  => ActionFn(51);
         let ___start = ___lookahead_start.cloned().or_else(|| ___symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let ___end = ___start.clone();
-        let ___nt = super::___action51::<>(text, &___start, &___end);
+        let ___nt = super::___action51::<>(&___start, &___end);
         ___symbols.push((___start, ___Symbol::Variant23(___nt), ___end));
         (0, 32)
     }
     pub(crate) fn ___reduce67<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3056,14 +2983,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant23(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action52::<>(text, ___sym0);
+        let ___nt = super::___action52::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant23(___nt), ___end));
         (1, 32)
     }
     pub(crate) fn ___reduce68<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3073,14 +2999,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant16(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action65::<>(text, ___sym0);
+        let ___nt = super::___action65::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant23(___nt), ___end));
         (1, 33)
     }
     pub(crate) fn ___reduce69<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3092,14 +3017,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant23(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action66::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action66::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant23(___nt), ___end));
         (2, 33)
     }
     pub(crate) fn ___reduce70<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3111,14 +3035,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym1.2;
-        let ___nt = super::___action107::<>(text, ___sym0, ___sym1);
+        let ___nt = super::___action107::<>(___sym0, ___sym1);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (2, 34)
     }
     pub(crate) fn ___reduce71<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3131,14 +3054,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym2.2;
-        let ___nt = super::___action108::<>(text, ___sym0, ___sym1, ___sym2);
+        let ___nt = super::___action108::<>(___sym0, ___sym1, ___sym2);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (3, 34)
     }
     pub(crate) fn ___reduce72<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3148,14 +3070,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant1(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym0.2;
-        let ___nt = super::___action38::<>(text, ___sym0);
+        let ___nt = super::___action38::<>(___sym0);
         ___symbols.push((___start, ___Symbol::Variant24(___nt), ___end));
         (1, 35)
     }
     pub(crate) fn ___reduce73<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3168,14 +3089,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant24(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym2.2;
-        let ___nt = super::___action100::<>(text, ___sym0, ___sym1, ___sym2);
+        let ___nt = super::___action100::<>(___sym0, ___sym1, ___sym2);
         ___symbols.push((___start, ___Symbol::Variant15(___nt), ___end));
         (3, 36)
     }
     pub(crate) fn ___reduce74<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3189,14 +3109,13 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym3.2;
-        let ___nt = super::___action101::<>(text, ___sym0, ___sym1, ___sym2, ___sym3);
+        let ___nt = super::___action101::<>(___sym0, ___sym1, ___sym2, ___sym3);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (4, 37)
     }
     pub(crate) fn ___reduce75<
         'input,
     >(
-        text: &'input str,
         ___lookahead_start: Option<&usize>,
         ___symbols: &mut alloc::vec::Vec<(usize,___Symbol<'input>,usize)>,
         _: core::marker::PhantomData<(&'input ())>,
@@ -3209,79 +3128,67 @@ mod ___parse___Program {
         let ___sym0 = ___pop_Variant0(___symbols);
         let ___start = ___sym0.0;
         let ___end = ___sym2.2;
-        let ___nt = super::___action102::<>(text, ___sym0, ___sym1, ___sym2);
+        let ___nt = super::___action102::<>(___sym0, ___sym1, ___sym2);
         ___symbols.push((___start, ___Symbol::Variant16(___nt), ___end));
         (3, 37)
     }
 }
 pub use self::___parse___Program::ProgramParser;
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action0<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Program, usize),
 ) -> ast::Program
 {
     ___0
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action1<
     'input,
 >(
-    text: &'input str,
     (_, definitions, _): (usize, alloc::vec::Vec<ast::Definition>, usize),
 ) -> ast::Program
 {
     ast::Program { definitions }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action2<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Definition, usize),
 ) -> ast::Definition
 {
     ___0
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action3<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Definition, usize),
 ) -> ast::Definition
 {
     ___0
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action4<
     'input,
 >(
-    text: &'input str,
     (_, i, _): (usize, &'input str, usize),
 ) -> ast::Ident
 {
     i.into()
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action5<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, is_inline, _): (usize, core::option::Option<Tok<'input>>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
@@ -3306,12 +3213,10 @@ fn ___action5<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action6<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, name, _): (usize, ast::Ident, usize),
@@ -3326,12 +3231,10 @@ fn ___action6<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action7<
     'input,
 >(
-    text: &'input str,
     (_, _, _): (usize, Tok<'input>, usize),
     (_, arg, _): (usize, core::option::Option<ast::ArgumentType>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
@@ -3342,60 +3245,50 @@ fn ___action7<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action8<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> ast::ReturnType
 {
     ast::ReturnType::Argument
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action9<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> ast::ReturnType
 {
     ast::ReturnType::State
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action10<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> ast::ArgumentType
 {
     ast::ArgumentType::Argument
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action11<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> ast::ArgumentType
 {
     ast::ArgumentType::State
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action12<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, body, _): (usize, alloc::vec::Vec<ast::Statement>, usize),
@@ -3410,12 +3303,10 @@ fn ___action12<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action13<
     'input,
 >(
-    text: &'input str,
     (_, s, _): (usize, ast::Statement, usize),
     (_, _, _): (usize, Tok<'input>, usize),
 ) -> ast::Statement
@@ -3423,96 +3314,80 @@ fn ___action13<
     s
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action14<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Statement, usize),
 ) -> ast::Statement
 {
     ___0
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action15<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Statement, usize),
 ) -> ast::Statement
 {
     ___0
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action16<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Statement, usize),
 ) -> ast::Statement
 {
     ___0
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action17<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Statement, usize),
 ) -> ast::Statement
 {
     ___0
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action18<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Statement, usize),
 ) -> ast::Statement
 {
     ___0
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action19<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Statement, usize),
 ) -> ast::Statement
 {
     ___0
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action20<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Statement, usize),
 ) -> ast::Statement
 {
     ___0
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action21<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, body, _): (usize, ast::InlineCode, usize),
 ) -> ast::Statement
@@ -3523,12 +3398,10 @@ fn ___action21<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action22<
     'input,
 >(
-    text: &'input str,
     (_, _, _): (usize, Tok<'input>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, code, _): (usize, &'input str, usize),
@@ -3538,12 +3411,10 @@ fn ___action22<
     ast::InlineCode { code: code.into() }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action23<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
 ) -> ast::Statement
@@ -3553,12 +3424,10 @@ fn ___action23<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action24<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, expr, _): (usize, Box<ast::Expr>, usize),
@@ -3569,12 +3438,10 @@ fn ___action24<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action25<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, name, _): (usize, ast::Ident, usize),
     (_, _, _): (usize, Tok<'input>, usize),
@@ -3587,12 +3454,10 @@ fn ___action25<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action26<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, block, _): (usize, ast::Statement, usize),
@@ -3604,12 +3469,10 @@ fn ___action26<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action27<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, negative, _): (usize, core::option::Option<Tok<'input>>, usize),
@@ -3624,12 +3487,10 @@ fn ___action27<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action28<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, negative, _): (usize, core::option::Option<Tok<'input>>, usize),
@@ -3649,48 +3510,40 @@ fn ___action28<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action29<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Expr, usize),
 ) -> Box<ast::Expr>
 {
     Box::new(___0)
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action30<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Expr, usize),
 ) -> Box<ast::Expr>
 {
     Box::new(___0)
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action31<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Expr, usize),
 ) -> Box<ast::Expr>
 {
     Box::new(___0)
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action32<
     'input,
 >(
-    text: &'input str,
     (_, _, _): (usize, Tok<'input>, usize),
     (_, c, _): (usize, Box<ast::Expr>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
@@ -3699,12 +3552,10 @@ fn ___action32<
     c
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action33<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, body, _): (usize, ast::InlineCode, usize),
 ) -> ast::Expr
@@ -3715,12 +3566,10 @@ fn ___action33<
      }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action34<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, name, _): (usize, ast::Ident, usize),
     (_, _, _): (usize, Tok<'input>, usize),
@@ -3734,12 +3583,10 @@ fn ___action34<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action35<
     'input,
 >(
-    text: &'input str,
     (_, location, _): (usize, usize, usize),
     (_, var, _): (usize, ast::Variable, usize),
     (_, op, _): (usize, ast::ComparisonOp, usize),
@@ -3752,144 +3599,120 @@ fn ___action35<
     }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action36<
     'input,
 >(
-    text: &'input str,
     (_, value, _): (usize, ast::Integer, usize),
 ) -> ast::IntegerExpr
 {
     ast::IntegerExpr::Literal { value }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action37<
     'input,
 >(
-    text: &'input str,
     (_, name, _): (usize, ast::Ident, usize),
 ) -> ast::IntegerExpr
 {
     ast::IntegerExpr::Const { name }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action38<
     'input,
 >(
-    text: &'input str,
     (_, v, _): (usize, &'input str, usize),
 ) -> ast::Variable
 {
     ast::Variable { name: v.into() }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action39<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> ast::ComparisonOp
 {
     ast::ComparisonOp::Eq
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action40<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> ast::ComparisonOp
 {
     ast::ComparisonOp::NotEq
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action41<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> ast::ComparisonOp
 {
     ast::ComparisonOp::GreaterThan
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action42<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> ast::ComparisonOp
 {
     ast::ComparisonOp::LessThan
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action43<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> ast::ComparisonOp
 {
     ast::ComparisonOp::GreaterOrEqual
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action44<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> ast::ComparisonOp
 {
     ast::ComparisonOp::LessOrEqual
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action45<
     'input,
 >(
-    text: &'input str,
     (_, i, _): (usize, u32, usize),
 ) -> ast::Integer
 {
     i
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action46<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, (Tok<'input>, ast::Statement), usize),
 ) -> core::option::Option<(Tok<'input>, ast::Statement)>
 {
     Some(___0)
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action47<
     'input,
 >(
-    text: &'input str,
     ___lookbehind: &usize,
     ___lookahead: &usize,
 ) -> core::option::Option<(Tok<'input>, ast::Statement)>
@@ -3897,12 +3720,10 @@ fn ___action47<
     None
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action48<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
     (_, ___1, _): (usize, ast::Statement, usize),
 ) -> (Tok<'input>, ast::Statement)
@@ -3910,24 +3731,20 @@ fn ___action48<
     (___0, ___1)
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action49<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> core::option::Option<Tok<'input>>
 {
     Some(___0)
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action50<
     'input,
 >(
-    text: &'input str,
     ___lookbehind: &usize,
     ___lookahead: &usize,
 ) -> core::option::Option<Tok<'input>>
@@ -3935,12 +3752,10 @@ fn ___action50<
     None
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action51<
     'input,
 >(
-    text: &'input str,
     ___lookbehind: &usize,
     ___lookahead: &usize,
 ) -> alloc::vec::Vec<ast::Statement>
@@ -3948,36 +3763,30 @@ fn ___action51<
     alloc::vec![]
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action52<
     'input,
 >(
-    text: &'input str,
     (_, v, _): (usize, alloc::vec::Vec<ast::Statement>, usize),
 ) -> alloc::vec::Vec<ast::Statement>
 {
     v
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action53<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::ArgumentType, usize),
 ) -> core::option::Option<ast::ArgumentType>
 {
     Some(___0)
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action54<
     'input,
 >(
-    text: &'input str,
     ___lookbehind: &usize,
     ___lookahead: &usize,
 ) -> core::option::Option<ast::ArgumentType>
@@ -3985,24 +3794,20 @@ fn ___action54<
     None
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action55<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, (Tok<'input>, ast::ReturnType), usize),
 ) -> core::option::Option<(Tok<'input>, ast::ReturnType)>
 {
     Some(___0)
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action56<
     'input,
 >(
-    text: &'input str,
     ___lookbehind: &usize,
     ___lookahead: &usize,
 ) -> core::option::Option<(Tok<'input>, ast::ReturnType)>
@@ -4010,12 +3815,10 @@ fn ___action56<
     None
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action57<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
     (_, ___1, _): (usize, ast::ReturnType, usize),
 ) -> (Tok<'input>, ast::ReturnType)
@@ -4023,24 +3826,20 @@ fn ___action57<
     (___0, ___1)
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action58<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, Tok<'input>, usize),
 ) -> core::option::Option<Tok<'input>>
 {
     Some(___0)
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action59<
     'input,
 >(
-    text: &'input str,
     ___lookbehind: &usize,
     ___lookahead: &usize,
 ) -> core::option::Option<Tok<'input>>
@@ -4048,11 +3847,9 @@ fn ___action59<
     None
 }
 
-#[allow(unused_variables)]
 fn ___action60<
     'input,
 >(
-    text: &'input str,
     ___lookbehind: &usize,
     ___lookahead: &usize,
 ) -> usize
@@ -4060,12 +3857,10 @@ fn ___action60<
     *___lookahead
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action61<
     'input,
 >(
-    text: &'input str,
     ___lookbehind: &usize,
     ___lookahead: &usize,
 ) -> alloc::vec::Vec<ast::Definition>
@@ -4073,36 +3868,30 @@ fn ___action61<
     alloc::vec![]
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action62<
     'input,
 >(
-    text: &'input str,
     (_, v, _): (usize, alloc::vec::Vec<ast::Definition>, usize),
 ) -> alloc::vec::Vec<ast::Definition>
 {
     v
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action63<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Definition, usize),
 ) -> alloc::vec::Vec<ast::Definition>
 {
     alloc::vec![___0]
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action64<
     'input,
 >(
-    text: &'input str,
     (_, v, _): (usize, alloc::vec::Vec<ast::Definition>, usize),
     (_, e, _): (usize, ast::Definition, usize),
 ) -> alloc::vec::Vec<ast::Definition>
@@ -4110,24 +3899,20 @@ fn ___action64<
     { let mut v = v; v.push(e); v }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action65<
     'input,
 >(
-    text: &'input str,
     (_, ___0, _): (usize, ast::Statement, usize),
 ) -> alloc::vec::Vec<ast::Statement>
 {
     alloc::vec![___0]
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action66<
     'input,
 >(
-    text: &'input str,
     (_, v, _): (usize, alloc::vec::Vec<ast::Statement>, usize),
     (_, e, _): (usize, ast::Statement, usize),
 ) -> alloc::vec::Vec<ast::Statement>
@@ -4135,12 +3920,10 @@ fn ___action66<
     { let mut v = v; v.push(e); v }
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action67<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4152,12 +3935,10 @@ fn ___action67<
     let ___start0 = ___2.0;
     let ___end0 = ___2.2;
     let ___temp0 = ___action49(
-        text,
         ___2,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action28(
-        text,
         ___0,
         ___1,
         ___temp0,
@@ -4167,12 +3948,10 @@ fn ___action67<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action68<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
@@ -4183,13 +3962,11 @@ fn ___action68<
     let ___start0 = ___1.2;
     let ___end0 = ___2.0;
     let ___temp0 = ___action50(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action28(
-        text,
         ___0,
         ___1,
         ___temp0,
@@ -4199,12 +3976,10 @@ fn ___action68<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action69<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4215,12 +3990,10 @@ fn ___action69<
     let ___start0 = ___2.0;
     let ___end0 = ___2.2;
     let ___temp0 = ___action49(
-        text,
         ___2,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action27(
-        text,
         ___0,
         ___1,
         ___temp0,
@@ -4229,12 +4002,10 @@ fn ___action69<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action70<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
@@ -4244,13 +4015,11 @@ fn ___action70<
     let ___start0 = ___1.2;
     let ___end0 = ___2.0;
     let ___temp0 = ___action50(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action27(
-        text,
         ___0,
         ___1,
         ___temp0,
@@ -4259,12 +4028,10 @@ fn ___action70<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action71<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4277,12 +4044,10 @@ fn ___action71<
     let ___start0 = ___1.0;
     let ___end0 = ___1.2;
     let ___temp0 = ___action58(
-        text,
         ___1,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action5(
-        text,
         ___0,
         ___temp0,
         ___2,
@@ -4293,12 +4058,10 @@ fn ___action71<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action72<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, ast::Ident, usize),
@@ -4310,13 +4073,11 @@ fn ___action72<
     let ___start0 = ___0.2;
     let ___end0 = ___1.0;
     let ___temp0 = ___action59(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action5(
-        text,
         ___0,
         ___temp0,
         ___1,
@@ -4327,12 +4088,10 @@ fn ___action72<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action73<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::ReturnType, usize),
 ) -> core::option::Option<(Tok<'input>, ast::ReturnType)>
@@ -4340,23 +4099,19 @@ fn ___action73<
     let ___start0 = ___0.0;
     let ___end0 = ___1.2;
     let ___temp0 = ___action57(
-        text,
         ___0,
         ___1,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action55(
-        text,
         ___temp0,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action74<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4370,13 +4125,11 @@ fn ___action74<
     let ___start0 = ___5.0;
     let ___end0 = ___6.2;
     let ___temp0 = ___action73(
-        text,
         ___5,
         ___6,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action71(
-        text,
         ___0,
         ___1,
         ___2,
@@ -4387,12 +4140,10 @@ fn ___action74<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action75<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4404,13 +4155,11 @@ fn ___action75<
     let ___start0 = ___4.2;
     let ___end0 = ___5.0;
     let ___temp0 = ___action56(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action71(
-        text,
         ___0,
         ___1,
         ___2,
@@ -4421,12 +4170,10 @@ fn ___action75<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action76<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, ast::Ident, usize),
@@ -4439,13 +4186,11 @@ fn ___action76<
     let ___start0 = ___4.0;
     let ___end0 = ___5.2;
     let ___temp0 = ___action73(
-        text,
         ___4,
         ___5,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action72(
-        text,
         ___0,
         ___1,
         ___2,
@@ -4455,12 +4200,10 @@ fn ___action76<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action77<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, ast::Ident, usize),
@@ -4471,13 +4214,11 @@ fn ___action77<
     let ___start0 = ___3.2;
     let ___end0 = ___4.0;
     let ___temp0 = ___action56(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action72(
-        text,
         ___0,
         ___1,
         ___2,
@@ -4487,12 +4228,10 @@ fn ___action77<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action78<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::Statement, usize),
 ) -> core::option::Option<(Tok<'input>, ast::Statement)>
@@ -4500,23 +4239,19 @@ fn ___action78<
     let ___start0 = ___0.0;
     let ___end0 = ___1.2;
     let ___temp0 = ___action48(
-        text,
         ___0,
         ___1,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action46(
-        text,
         ___temp0,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action79<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4529,13 +4264,11 @@ fn ___action79<
     let ___start0 = ___5.0;
     let ___end0 = ___6.2;
     let ___temp0 = ___action78(
-        text,
         ___5,
         ___6,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action67(
-        text,
         ___0,
         ___1,
         ___2,
@@ -4545,12 +4278,10 @@ fn ___action79<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action80<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4561,13 +4292,11 @@ fn ___action80<
     let ___start0 = ___4.2;
     let ___end0 = ___4.2;
     let ___temp0 = ___action47(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action67(
-        text,
         ___0,
         ___1,
         ___2,
@@ -4577,12 +4306,10 @@ fn ___action80<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action81<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
@@ -4594,13 +4321,11 @@ fn ___action81<
     let ___start0 = ___4.0;
     let ___end0 = ___5.2;
     let ___temp0 = ___action78(
-        text,
         ___4,
         ___5,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action68(
-        text,
         ___0,
         ___1,
         ___2,
@@ -4609,12 +4334,10 @@ fn ___action81<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action82<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
@@ -4624,13 +4347,11 @@ fn ___action82<
     let ___start0 = ___3.2;
     let ___end0 = ___3.2;
     let ___temp0 = ___action47(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action68(
-        text,
         ___0,
         ___1,
         ___2,
@@ -4639,12 +4360,10 @@ fn ___action82<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action83<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::Ident, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4655,13 +4374,11 @@ fn ___action83<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action6(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4671,12 +4388,10 @@ fn ___action83<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action84<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, ast::Ident, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4685,13 +4400,11 @@ fn ___action84<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action34(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4699,12 +4412,10 @@ fn ___action84<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action85<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, ast::Ident, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4713,13 +4424,11 @@ fn ___action85<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action25(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4727,12 +4436,10 @@ fn ___action85<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action86<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, ast::Ident, usize),
@@ -4745,13 +4452,11 @@ fn ___action86<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action74(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4763,12 +4468,10 @@ fn ___action86<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action87<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, ast::Ident, usize),
@@ -4779,13 +4482,11 @@ fn ___action87<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action75(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4795,12 +4496,10 @@ fn ___action87<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action88<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::Ident, usize),
     ___2: (usize, ast::ArgumentType, usize),
@@ -4812,13 +4511,11 @@ fn ___action88<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action76(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4829,12 +4526,10 @@ fn ___action88<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action89<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::Ident, usize),
     ___2: (usize, ast::ArgumentType, usize),
@@ -4844,13 +4539,11 @@ fn ___action89<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action77(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4859,12 +4552,10 @@ fn ___action89<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action90<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
@@ -4876,13 +4567,11 @@ fn ___action90<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action79(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4893,12 +4582,10 @@ fn ___action90<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action91<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
@@ -4908,13 +4595,11 @@ fn ___action91<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action80(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4923,12 +4608,10 @@ fn ___action91<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action92<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Box<ast::Expr>, usize),
     ___2: (usize, ast::Statement, usize),
@@ -4939,13 +4622,11 @@ fn ___action92<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action81(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4955,12 +4636,10 @@ fn ___action92<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action93<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Box<ast::Expr>, usize),
     ___2: (usize, ast::Statement, usize),
@@ -4969,13 +4648,11 @@ fn ___action93<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action82(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -4983,60 +4660,50 @@ fn ___action93<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action94<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, ast::InlineCode, usize),
 ) -> ast::Expr
 {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action33(
-        text,
         ___temp0,
         ___0,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action95<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, ast::InlineCode, usize),
 ) -> ast::Statement
 {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action21(
-        text,
         ___temp0,
         ___0,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action96<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::Statement, usize),
 ) -> ast::Statement
@@ -5044,49 +4711,41 @@ fn ___action96<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action26(
-        text,
         ___temp0,
         ___0,
         ___1,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action97<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
 ) -> ast::Statement
 {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action23(
-        text,
         ___temp0,
         ___0,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action98<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Box<ast::Expr>, usize),
 ) -> ast::Statement
@@ -5094,25 +4753,21 @@ fn ___action98<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action24(
-        text,
         ___temp0,
         ___0,
         ___1,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action99<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, alloc::vec::Vec<ast::Statement>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -5121,13 +4776,11 @@ fn ___action99<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action12(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -5135,12 +4788,10 @@ fn ___action99<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action100<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, ast::Variable, usize),
     ___1: (usize, ast::ComparisonOp, usize),
     ___2: (usize, ast::IntegerExpr, usize),
@@ -5149,13 +4800,11 @@ fn ___action100<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action35(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -5163,12 +4812,10 @@ fn ___action100<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action101<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
@@ -5178,13 +4825,11 @@ fn ___action101<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action69(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -5193,12 +4838,10 @@ fn ___action101<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action102<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Box<ast::Expr>, usize),
     ___2: (usize, ast::Statement, usize),
@@ -5207,13 +4850,11 @@ fn ___action102<
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
     let ___temp0 = ___action60(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action70(
-        text,
         ___temp0,
         ___0,
         ___1,
@@ -5221,12 +4862,10 @@ fn ___action102<
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action103<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::ArgumentType, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -5235,24 +4874,20 @@ fn ___action103<
     let ___start0 = ___1.0;
     let ___end0 = ___1.2;
     let ___temp0 = ___action53(
-        text,
         ___1,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action7(
-        text,
         ___0,
         ___temp0,
         ___2,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action104<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
 ) -> ast::ArgumentType
@@ -5260,25 +4895,21 @@ fn ___action104<
     let ___start0 = ___0.2;
     let ___end0 = ___1.0;
     let ___temp0 = ___action54(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action7(
-        text,
         ___0,
         ___temp0,
         ___1,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action105<
     'input,
 >(
-    text: &'input str,
     ___lookbehind: &usize,
     ___lookahead: &usize,
 ) -> ast::Program
@@ -5286,45 +4917,37 @@ fn ___action105<
     let ___start0 = *___lookbehind;
     let ___end0 = *___lookahead;
     let ___temp0 = ___action61(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action1(
-        text,
         ___temp0,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action106<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, alloc::vec::Vec<ast::Definition>, usize),
 ) -> ast::Program
 {
     let ___start0 = ___0.0;
     let ___end0 = ___0.2;
     let ___temp0 = ___action62(
-        text,
         ___0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action1(
-        text,
         ___temp0,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action107<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
 ) -> ast::Statement
@@ -5332,25 +4955,21 @@ fn ___action107<
     let ___start0 = ___0.2;
     let ___end0 = ___1.0;
     let ___temp0 = ___action51(
-        text,
         &___start0,
         &___end0,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action99(
-        text,
         ___0,
         ___temp0,
         ___1,
     )
 }
 
-#[allow(unused_variables)]
 #[allow(clippy::too_many_arguments)]
 fn ___action108<
     'input,
 >(
-    text: &'input str,
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, alloc::vec::Vec<ast::Statement>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -5359,12 +4978,10 @@ fn ___action108<
     let ___start0 = ___1.0;
     let ___end0 = ___1.2;
     let ___temp0 = ___action52(
-        text,
         ___1,
     );
     let ___temp0 = (___start0, ___temp0, ___end0);
     ___action99(
-        text,
         ___0,
         ___temp0,
         ___2,

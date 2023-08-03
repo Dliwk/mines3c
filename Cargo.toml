@@ -10,3 +10,4 @@ lalrpop = { version = "0.20.0", features = ["lexer", "unicode"] }
 lalrpop-util = { version = "0.20.0", features = ["lexer", "unicode", "regex", "std"] }
 unicode-xid = "0.2.4"
 anyhow = "1.0"
+clap = { version = "4.3", features = ["derive"] }

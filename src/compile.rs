@@ -24,7 +24,7 @@ pub enum CompileErrorKind {
     MainNotFound,
     ReturnInNoReturnContext,
     UndefinedConstant(String),
-    Unimplemented(&'static str),
+    Unimplemented(String),
 }
 
 impl Display for CompileError {
@@ -381,15 +381,15 @@ impl Compiler {
                 let op = match op {
                     ComparisonOp::Eq => "=",
                     ComparisonOp::NotEq => {
-                        return error(CompileErrorKind::Unimplemented("!= operator"), expr.location);
+                        return error(CompileErrorKind::Unimplemented("!= operator".into()), expr.location);
                     }
                     ComparisonOp::LessThan => "<",
                     ComparisonOp::GreaterThan => ">",
                     ComparisonOp::LessOrEqual => {
-                        return error(CompileErrorKind::Unimplemented("<= operator"), expr.location);
+                        return error(CompileErrorKind::Unimplemented("<= operator".into()), expr.location);
                     }
                     ComparisonOp::GreaterOrEqual => {
-                        return error(CompileErrorKind::Unimplemented(">= operator"), expr.location);
+                        return error(CompileErrorKind::Unimplemented(">= operator".into()), expr.location);
                     }
                 };
                 vec![format!("({}{}{})", var.name, op, value)]

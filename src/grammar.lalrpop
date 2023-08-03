@@ -1,7 +1,7 @@
 use crate::tok::{self, Tok};
 use crate::ast;
 
-grammar<'input>(text: &'input str);
+grammar<'input>();
 
 pub Program: ast::Program = {
     <definitions:Definition*> => ast::Program { definitions },
