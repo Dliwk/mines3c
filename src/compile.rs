@@ -49,7 +49,6 @@ fn error<T>(kind: CompileErrorKind, location: usize) -> Result<T, CompileError> 
 
 #[derive(Debug)]
 pub struct Constant {
-    name: String,
     value: u32,
 }
 
@@ -116,7 +115,7 @@ impl Evaluator {
                     if self.consts.contains_key(&name) {
                         return error(CompileErrorKind::ConstRedeclaration(name), def.location);
                     }
-                    self.consts.insert(name.clone(), Constant { name, value });
+                    self.consts.insert(name.clone(), Constant { value });
                 }
             }
         }
@@ -342,8 +341,6 @@ impl Compiler {
             }
         };
 
-        println!("compiling function call {}()", name);
-
         let mut result = vec![];
 
         if func.inline {
@@ -445,7 +442,6 @@ impl Compiler {
         };
 
         let code = if !compiled {
-            println!("compile function: {}", name);
             if inline {
                 let ast = self.get_inline_function_ast(name);
                 Some(self.compile_statements(ast, &ReturnContext::NoReturn)?)
