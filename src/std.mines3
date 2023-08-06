@@ -1,4 +1,4 @@
-// Стаднартная библиотека для компилятора mines3c
+// Стандартная библиотека для компилятора mines3c
 //
 // vim: syntax=rust:
 
@@ -189,9 +189,12 @@ inline fn quit() {
   __code__("#E");
 }
 
-// HACK: в идеале эта функция должна принимать другую функцию как аргумент,
-//       но сейчас нам придется просто вставить ее в начало функции,
-//       которую мы выставляем как обработчик возрождения.
+// XXX: в идеале эта функция должна принимать другую функцию как аргумент,
+//      но сейчас нам придется просто вставить ее в начало функции,
+//      которую мы выставляем как обработчик возрождения.
+// UPD: на практике же #R не работает в принципе. [стикер :slightly_smiling:]
+//      точнее не получается нормально вставить код, в котором
+//      оно присутствует.
 inline fn setup_respawn_handler() {
   __code__("#RRES<");
   __code__("|RES:");
@@ -208,10 +211,11 @@ inline fn flip() {
   __code__("FLIP;");
 }
 
-inline fn check_inside_cannon() {
+// ????
+inline fn check_inside_gun() {
   __code__("=G");
 }
-inline fn fill_cannon() {
+inline fn fill_gun() {
   __code__("FILL;");
 }
 
@@ -252,7 +256,7 @@ inline fn hand_mode_off() {
 //    0
 //
 
-fn select_backward() {
+fn select_backward() -> arg {
   if $DIR == 0 {
     select_up();
   } else if $DIR == 1 {
@@ -262,9 +266,10 @@ fn select_backward() {
   } else { // $DIR == 3
     select_left();
   }
+  return;
 }
 
-fn selection_move_backward() {
+fn selection_move_backward(state) -> arg {
   if $DIR == 0 {
     selection_move_up();
   } else if $DIR == 1 {
@@ -274,9 +279,10 @@ fn selection_move_backward() {
   } else { // $DIR == 3
     selection_move_left();
   }
+  return;
 }
 
-fn selection_move_left_hand() {
+fn selection_move_left_hand(state) -> arg {
   if $DIR == 0 {
     selection_move_right();
   } else if $DIR == 1 {
@@ -286,9 +292,10 @@ fn selection_move_left_hand() {
   } else { // $DIR == 3
     selection_move_up();
   }
+  return;
 }
 
-fn selection_move_right_hand() {
+fn selection_move_right_hand(state) -> arg {
   if $DIR == 0 {
     selection_move_left();
   } else if $DIR == 1 {
@@ -298,11 +305,10 @@ fn selection_move_right_hand() {
   } else { // $DIR == 3
     selection_move_down();
   }
+  return;
 }
 
 fn turn_around() {
   turn_left();
   turn_left();
 }
-
-
