@@ -1,0 +1,6 @@
+// vim: syntax=rust
+fn main() {
+  while $X < 10 {
+    move_right();
+  }
+}
