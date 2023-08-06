@@ -282,6 +282,8 @@ impl Compiler {
                     }
                     // body
                     result.append(&mut self.compile_statements(body, ctx)?);
+                    // go to start label again
+                    result.push(format!(">{}|", start_label));
                     // finish label
                     result.push(format!("|{}:", finish_label));
                 }
