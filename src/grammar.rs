@@ -1,13 +1,13 @@
 // auto-generated: "lalrpop 0.20.0"
 // sha3: 68c5b172b9dbe270062ba8780cf803ec324a73bd6bac89ef55f46974f618da65
-use crate::tok::{self, Tok};
 use crate::ast;
+use crate::tok::{self, Tok};
 #[allow(unused_extern_crates)]
 extern crate lalrpop_util as ___lalrpop_util;
 #[allow(unused_imports)]
 use self::___lalrpop_util::state_machine as ___state_machine;
-extern crate core;
 extern crate alloc;
+extern crate core;
 
 #[rustfmt::skip]
 #[allow(non_snake_case, non_camel_case_types, unused_mut, unused_variables, unused_imports, unused_parens, clippy::all)]
@@ -3136,95 +3136,78 @@ mod ___parse___Program {
 pub use self::___parse___Program::ProgramParser;
 
 #[allow(clippy::too_many_arguments)]
-fn ___action0<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Program, usize),
-) -> ast::Program
-{
+fn ___action0<'input>((_, ___0, _): (usize, ast::Program, usize)) -> ast::Program {
     ___0
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action1<
-    'input,
->(
+fn ___action1<'input>(
     (_, definitions, _): (usize, alloc::vec::Vec<ast::Definition>, usize),
-) -> ast::Program
-{
+) -> ast::Program {
     ast::Program { definitions }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action2<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Definition, usize),
-) -> ast::Definition
-{
+fn ___action2<'input>((_, ___0, _): (usize, ast::Definition, usize)) -> ast::Definition {
     ___0
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action3<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Definition, usize),
-) -> ast::Definition
-{
+fn ___action3<'input>((_, ___0, _): (usize, ast::Definition, usize)) -> ast::Definition {
     ___0
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action4<
-    'input,
->(
-    (_, i, _): (usize, &'input str, usize),
-) -> ast::Ident
-{
+fn ___action4<'input>((_, i, _): (usize, &'input str, usize)) -> ast::Ident {
     i.into()
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action5<
-    'input,
->(
+fn ___action5<'input>(
     (_, location, _): (usize, usize, usize),
     (_, is_inline, _): (usize, core::option::Option<Tok<'input>>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, name, _): (usize, ast::Ident, usize),
     (_, arg, _): (usize, ast::ArgumentType, usize),
-    (_, returns, _): (usize, core::option::Option<(Tok<'input>, ast::ReturnType)>, usize),
+    (_, returns, _): (
+        usize,
+        core::option::Option<(Tok<'input>, ast::ReturnType)>,
+        usize,
+    ),
     (_, block, _): (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     {
         let returns = match returns {
             None => ast::ReturnType::Nothing,
             Some((_, rt)) => rt,
         };
         let node = if is_inline.is_none() {
-            ast::DefinitionKind::Function { name, arg, returns, body: vec![block] }
+            ast::DefinitionKind::Function {
+                name,
+                arg,
+                returns,
+                body: vec![block],
+            }
         } else {
             // TODO: error if there are any args or returns
-            ast::DefinitionKind::InlineFunction { name, body: vec![block] }
+            ast::DefinitionKind::InlineFunction {
+                name,
+                body: vec![block],
+            }
         };
         ast::Definition::new(location, node)
     }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action6<
-    'input,
->(
+fn ___action6<'input>(
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, name, _): (usize, ast::Ident, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, value, _): (usize, ast::Integer, usize),
     (_, _, _): (usize, Tok<'input>, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     {
         let node = ast::DefinitionKind::Const { name, value };
         ast::Definition::new(location, node)
@@ -3232,166 +3215,96 @@ fn ___action6<
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action7<
-    'input,
->(
+fn ___action7<'input>(
     (_, _, _): (usize, Tok<'input>, usize),
     (_, arg, _): (usize, core::option::Option<ast::ArgumentType>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
-) -> ast::ArgumentType
-{
+) -> ast::ArgumentType {
     {
         arg.unwrap_or(ast::ArgumentType::Nothing)
     }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action8<
-    'input,
->(
-    (_, ___0, _): (usize, Tok<'input>, usize),
-) -> ast::ReturnType
-{
+fn ___action8<'input>((_, ___0, _): (usize, Tok<'input>, usize)) -> ast::ReturnType {
     ast::ReturnType::Argument
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action9<
-    'input,
->(
-    (_, ___0, _): (usize, Tok<'input>, usize),
-) -> ast::ReturnType
-{
+fn ___action9<'input>((_, ___0, _): (usize, Tok<'input>, usize)) -> ast::ReturnType {
     ast::ReturnType::State
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action10<
-    'input,
->(
-    (_, ___0, _): (usize, Tok<'input>, usize),
-) -> ast::ArgumentType
-{
+fn ___action10<'input>((_, ___0, _): (usize, Tok<'input>, usize)) -> ast::ArgumentType {
     ast::ArgumentType::Argument
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action11<
-    'input,
->(
-    (_, ___0, _): (usize, Tok<'input>, usize),
-) -> ast::ArgumentType
-{
+fn ___action11<'input>((_, ___0, _): (usize, Tok<'input>, usize)) -> ast::ArgumentType {
     ast::ArgumentType::State
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action12<
-    'input,
->(
+fn ___action12<'input>(
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, body, _): (usize, alloc::vec::Vec<ast::Statement>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     {
-        ast::Statement::new(
-            location,
-            ast::StatementKind::StatementBlock { body }
-        )
+        ast::Statement::new(location, ast::StatementKind::StatementBlock { body })
     }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action13<
-    'input,
->(
+fn ___action13<'input>(
     (_, s, _): (usize, ast::Statement, usize),
     (_, _, _): (usize, Tok<'input>, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     s
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action14<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+fn ___action14<'input>((_, ___0, _): (usize, ast::Statement, usize)) -> ast::Statement {
     ___0
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action15<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+fn ___action15<'input>((_, ___0, _): (usize, ast::Statement, usize)) -> ast::Statement {
     ___0
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action16<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+fn ___action16<'input>((_, ___0, _): (usize, ast::Statement, usize)) -> ast::Statement {
     ___0
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action17<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+fn ___action17<'input>((_, ___0, _): (usize, ast::Statement, usize)) -> ast::Statement {
     ___0
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action18<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+fn ___action18<'input>((_, ___0, _): (usize, ast::Statement, usize)) -> ast::Statement {
     ___0
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action19<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+fn ___action19<'input>((_, ___0, _): (usize, ast::Statement, usize)) -> ast::Statement {
     ___0
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action20<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+fn ___action20<'input>((_, ___0, _): (usize, ast::Statement, usize)) -> ast::Statement {
     ___0
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action21<
-    'input,
->(
+fn ___action21<'input>(
     (_, location, _): (usize, usize, usize),
     (_, body, _): (usize, ast::InlineCode, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     {
         let node = ast::StatementKind::InlineCode { body };
         ast::Statement::new(location, node)
@@ -3399,55 +3312,43 @@ fn ___action21<
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action22<
-    'input,
->(
+fn ___action22<'input>(
     (_, _, _): (usize, Tok<'input>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, code, _): (usize, &'input str, usize),
     (_, _, _): (usize, Tok<'input>, usize),
-) -> ast::InlineCode
-{
+) -> ast::InlineCode {
     ast::InlineCode { code: code.into() }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action23<
-    'input,
->(
+fn ___action23<'input>(
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     {
         ast::Statement::new(location, ast::StatementKind::Return { expr: None })
     }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action24<
-    'input,
->(
+fn ___action24<'input>(
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, expr, _): (usize, Box<ast::Expr>, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     {
         ast::Statement::new(location, ast::StatementKind::Return { expr: Some(expr) })
     }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action25<
-    'input,
->(
+fn ___action25<'input>(
     (_, location, _): (usize, usize, usize),
     (_, name, _): (usize, ast::Ident, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     {
         let node = ast::StatementKind::FunctionCall { name };
         ast::Statement { location, node }
@@ -3455,14 +3356,11 @@ fn ___action25<
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action26<
-    'input,
->(
+fn ___action26<'input>(
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, block, _): (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     {
         let node = ast::StatementKind::Loop { body: vec![block] };
         ast::Statement::new(location, node)
@@ -3470,112 +3368,95 @@ fn ___action26<
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action27<
-    'input,
->(
+fn ___action27<'input>(
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, negative, _): (usize, core::option::Option<Tok<'input>>, usize),
     (_, condition, _): (usize, Box<ast::Expr>, usize),
     (_, block, _): (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     {
         let negative = negative.is_some();
-        let node = ast::StatementKind::While { condition, body: vec![block], negative };
+        let node = ast::StatementKind::While {
+            condition,
+            body: vec![block],
+            negative,
+        };
         ast::Statement::new(location, node)
     }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action28<
-    'input,
->(
+fn ___action28<'input>(
     (_, location, _): (usize, usize, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, negative, _): (usize, core::option::Option<Tok<'input>>, usize),
     (_, condition, _): (usize, Box<ast::Expr>, usize),
     (_, block, _): (usize, ast::Statement, usize),
-    (_, orelse, _): (usize, core::option::Option<(Tok<'input>, ast::Statement)>, usize),
-) -> ast::Statement
-{
+    (_, orelse, _): (
+        usize,
+        core::option::Option<(Tok<'input>, ast::Statement)>,
+        usize,
+    ),
+) -> ast::Statement {
     {
         let orelse = match orelse {
             Some((_, stmt)) => vec![stmt],
             None => vec![],
         };
         let negative = negative.is_some();
-        let node = ast::StatementKind::If { condition, body: vec![block], orelse, negative };
+        let node = ast::StatementKind::If {
+            condition,
+            body: vec![block],
+            orelse,
+            negative,
+        };
         ast::Statement::new(location, node)
     }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action29<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Expr, usize),
-) -> Box<ast::Expr>
-{
+fn ___action29<'input>((_, ___0, _): (usize, ast::Expr, usize)) -> Box<ast::Expr> {
     Box::new(___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action30<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Expr, usize),
-) -> Box<ast::Expr>
-{
+fn ___action30<'input>((_, ___0, _): (usize, ast::Expr, usize)) -> Box<ast::Expr> {
     Box::new(___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action31<
-    'input,
->(
-    (_, ___0, _): (usize, ast::Expr, usize),
-) -> Box<ast::Expr>
-{
+fn ___action31<'input>((_, ___0, _): (usize, ast::Expr, usize)) -> Box<ast::Expr> {
     Box::new(___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action32<
-    'input,
->(
+fn ___action32<'input>(
     (_, _, _): (usize, Tok<'input>, usize),
     (_, c, _): (usize, Box<ast::Expr>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
-) -> Box<ast::Expr>
-{
+) -> Box<ast::Expr> {
     c
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action33<
-    'input,
->(
+fn ___action33<'input>(
     (_, location, _): (usize, usize, usize),
     (_, body, _): (usize, ast::InlineCode, usize),
-) -> ast::Expr
-{
+) -> ast::Expr {
     {
-         let node = ast::ExprKind::InlineCode { body };
-         ast::Expr::new(location, node)
-     }
+        let node = ast::ExprKind::InlineCode { body };
+        ast::Expr::new(location, node)
+    }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action34<
-    'input,
->(
+fn ___action34<'input>(
     (_, location, _): (usize, usize, usize),
     (_, name, _): (usize, ast::Ident, usize),
     (_, _, _): (usize, Tok<'input>, usize),
     (_, _, _): (usize, Tok<'input>, usize),
-) -> ast::Expr
-{
+) -> ast::Expr {
     {
         // TODO: check that function returns an argument or a state.
         let node = ast::ExprKind::FunctionCallResult { name };
@@ -3584,15 +3465,12 @@ fn ___action34<
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action35<
-    'input,
->(
+fn ___action35<'input>(
     (_, location, _): (usize, usize, usize),
     (_, var, _): (usize, ast::Variable, usize),
     (_, op, _): (usize, ast::ComparisonOp, usize),
     (_, value, _): (usize, ast::IntegerExpr, usize),
-) -> ast::Expr
-{
+) -> ast::Expr {
     {
         let node = ast::ExprKind::VariableComparison { var, value, op };
         ast::Expr::new(location, node)
@@ -3600,518 +3478,341 @@ fn ___action35<
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action36<
-    'input,
->(
-    (_, value, _): (usize, ast::Integer, usize),
-) -> ast::IntegerExpr
-{
+fn ___action36<'input>((_, value, _): (usize, ast::Integer, usize)) -> ast::IntegerExpr {
     ast::IntegerExpr::Literal { value }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action37<
-    'input,
->(
-    (_, name, _): (usize, ast::Ident, usize),
-) -> ast::IntegerExpr
-{
+fn ___action37<'input>((_, name, _): (usize, ast::Ident, usize)) -> ast::IntegerExpr {
     ast::IntegerExpr::Const { name }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action38<
-    'input,
->(
-    (_, v, _): (usize, &'input str, usize),
-) -> ast::Variable
-{
+fn ___action38<'input>((_, v, _): (usize, &'input str, usize)) -> ast::Variable {
     ast::Variable { name: v.into() }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action39<
-    'input,
->(
-    (_, ___0, _): (usize, Tok<'input>, usize),
-) -> ast::ComparisonOp
-{
+fn ___action39<'input>((_, ___0, _): (usize, Tok<'input>, usize)) -> ast::ComparisonOp {
     ast::ComparisonOp::Eq
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action40<
-    'input,
->(
-    (_, ___0, _): (usize, Tok<'input>, usize),
-) -> ast::ComparisonOp
-{
+fn ___action40<'input>((_, ___0, _): (usize, Tok<'input>, usize)) -> ast::ComparisonOp {
     ast::ComparisonOp::NotEq
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action41<
-    'input,
->(
-    (_, ___0, _): (usize, Tok<'input>, usize),
-) -> ast::ComparisonOp
-{
+fn ___action41<'input>((_, ___0, _): (usize, Tok<'input>, usize)) -> ast::ComparisonOp {
     ast::ComparisonOp::GreaterThan
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action42<
-    'input,
->(
-    (_, ___0, _): (usize, Tok<'input>, usize),
-) -> ast::ComparisonOp
-{
+fn ___action42<'input>((_, ___0, _): (usize, Tok<'input>, usize)) -> ast::ComparisonOp {
     ast::ComparisonOp::LessThan
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action43<
-    'input,
->(
-    (_, ___0, _): (usize, Tok<'input>, usize),
-) -> ast::ComparisonOp
-{
+fn ___action43<'input>((_, ___0, _): (usize, Tok<'input>, usize)) -> ast::ComparisonOp {
     ast::ComparisonOp::GreaterOrEqual
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action44<
-    'input,
->(
-    (_, ___0, _): (usize, Tok<'input>, usize),
-) -> ast::ComparisonOp
-{
+fn ___action44<'input>((_, ___0, _): (usize, Tok<'input>, usize)) -> ast::ComparisonOp {
     ast::ComparisonOp::LessOrEqual
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action45<
-    'input,
->(
-    (_, i, _): (usize, u32, usize),
-) -> ast::Integer
-{
+fn ___action45<'input>((_, i, _): (usize, u32, usize)) -> ast::Integer {
     i
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action46<
-    'input,
->(
+fn ___action46<'input>(
     (_, ___0, _): (usize, (Tok<'input>, ast::Statement), usize),
-) -> core::option::Option<(Tok<'input>, ast::Statement)>
-{
+) -> core::option::Option<(Tok<'input>, ast::Statement)> {
     Some(___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action47<
-    'input,
->(
+fn ___action47<'input>(
     ___lookbehind: &usize,
     ___lookahead: &usize,
-) -> core::option::Option<(Tok<'input>, ast::Statement)>
-{
+) -> core::option::Option<(Tok<'input>, ast::Statement)> {
     None
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action48<
-    'input,
->(
+fn ___action48<'input>(
     (_, ___0, _): (usize, Tok<'input>, usize),
     (_, ___1, _): (usize, ast::Statement, usize),
-) -> (Tok<'input>, ast::Statement)
-{
+) -> (Tok<'input>, ast::Statement) {
     (___0, ___1)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action49<
-    'input,
->(
+fn ___action49<'input>(
     (_, ___0, _): (usize, Tok<'input>, usize),
-) -> core::option::Option<Tok<'input>>
-{
+) -> core::option::Option<Tok<'input>> {
     Some(___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action50<
-    'input,
->(
+fn ___action50<'input>(
     ___lookbehind: &usize,
     ___lookahead: &usize,
-) -> core::option::Option<Tok<'input>>
-{
+) -> core::option::Option<Tok<'input>> {
     None
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action51<
-    'input,
->(
+fn ___action51<'input>(
     ___lookbehind: &usize,
     ___lookahead: &usize,
-) -> alloc::vec::Vec<ast::Statement>
-{
+) -> alloc::vec::Vec<ast::Statement> {
     alloc::vec![]
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action52<
-    'input,
->(
+fn ___action52<'input>(
     (_, v, _): (usize, alloc::vec::Vec<ast::Statement>, usize),
-) -> alloc::vec::Vec<ast::Statement>
-{
+) -> alloc::vec::Vec<ast::Statement> {
     v
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action53<
-    'input,
->(
+fn ___action53<'input>(
     (_, ___0, _): (usize, ast::ArgumentType, usize),
-) -> core::option::Option<ast::ArgumentType>
-{
+) -> core::option::Option<ast::ArgumentType> {
     Some(___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action54<
-    'input,
->(
+fn ___action54<'input>(
     ___lookbehind: &usize,
     ___lookahead: &usize,
-) -> core::option::Option<ast::ArgumentType>
-{
+) -> core::option::Option<ast::ArgumentType> {
     None
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action55<
-    'input,
->(
+fn ___action55<'input>(
     (_, ___0, _): (usize, (Tok<'input>, ast::ReturnType), usize),
-) -> core::option::Option<(Tok<'input>, ast::ReturnType)>
-{
+) -> core::option::Option<(Tok<'input>, ast::ReturnType)> {
     Some(___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action56<
-    'input,
->(
+fn ___action56<'input>(
     ___lookbehind: &usize,
     ___lookahead: &usize,
-) -> core::option::Option<(Tok<'input>, ast::ReturnType)>
-{
+) -> core::option::Option<(Tok<'input>, ast::ReturnType)> {
     None
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action57<
-    'input,
->(
+fn ___action57<'input>(
     (_, ___0, _): (usize, Tok<'input>, usize),
     (_, ___1, _): (usize, ast::ReturnType, usize),
-) -> (Tok<'input>, ast::ReturnType)
-{
+) -> (Tok<'input>, ast::ReturnType) {
     (___0, ___1)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action58<
-    'input,
->(
+fn ___action58<'input>(
     (_, ___0, _): (usize, Tok<'input>, usize),
-) -> core::option::Option<Tok<'input>>
-{
+) -> core::option::Option<Tok<'input>> {
     Some(___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action59<
-    'input,
->(
+fn ___action59<'input>(
     ___lookbehind: &usize,
     ___lookahead: &usize,
-) -> core::option::Option<Tok<'input>>
-{
+) -> core::option::Option<Tok<'input>> {
     None
 }
 
-fn ___action60<
-    'input,
->(
-    ___lookbehind: &usize,
-    ___lookahead: &usize,
-) -> usize
-{
+fn ___action60<'input>(___lookbehind: &usize, ___lookahead: &usize) -> usize {
     *___lookahead
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action61<
-    'input,
->(
+fn ___action61<'input>(
     ___lookbehind: &usize,
     ___lookahead: &usize,
-) -> alloc::vec::Vec<ast::Definition>
-{
+) -> alloc::vec::Vec<ast::Definition> {
     alloc::vec![]
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action62<
-    'input,
->(
+fn ___action62<'input>(
     (_, v, _): (usize, alloc::vec::Vec<ast::Definition>, usize),
-) -> alloc::vec::Vec<ast::Definition>
-{
+) -> alloc::vec::Vec<ast::Definition> {
     v
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action63<
-    'input,
->(
+fn ___action63<'input>(
     (_, ___0, _): (usize, ast::Definition, usize),
-) -> alloc::vec::Vec<ast::Definition>
-{
+) -> alloc::vec::Vec<ast::Definition> {
     alloc::vec![___0]
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action64<
-    'input,
->(
+fn ___action64<'input>(
     (_, v, _): (usize, alloc::vec::Vec<ast::Definition>, usize),
     (_, e, _): (usize, ast::Definition, usize),
-) -> alloc::vec::Vec<ast::Definition>
-{
-    { let mut v = v; v.push(e); v }
+) -> alloc::vec::Vec<ast::Definition> {
+    {
+        let mut v = v;
+        v.push(e);
+        v
+    }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action65<
-    'input,
->(
+fn ___action65<'input>(
     (_, ___0, _): (usize, ast::Statement, usize),
-) -> alloc::vec::Vec<ast::Statement>
-{
+) -> alloc::vec::Vec<ast::Statement> {
     alloc::vec![___0]
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action66<
-    'input,
->(
+fn ___action66<'input>(
     (_, v, _): (usize, alloc::vec::Vec<ast::Statement>, usize),
     (_, e, _): (usize, ast::Statement, usize),
-) -> alloc::vec::Vec<ast::Statement>
-{
-    { let mut v = v; v.push(e); v }
+) -> alloc::vec::Vec<ast::Statement> {
+    {
+        let mut v = v;
+        v.push(e);
+        v
+    }
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action67<
-    'input,
->(
+fn ___action67<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
     ___3: (usize, Box<ast::Expr>, usize),
     ___4: (usize, ast::Statement, usize),
-    ___5: (usize, core::option::Option<(Tok<'input>, ast::Statement)>, usize),
-) -> ast::Statement
-{
+    ___5: (
+        usize,
+        core::option::Option<(Tok<'input>, ast::Statement)>,
+        usize,
+    ),
+) -> ast::Statement {
     let ___start0 = ___2.0;
     let ___end0 = ___2.2;
-    let ___temp0 = ___action49(
-        ___2,
-    );
+    let ___temp0 = ___action49(___2);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action28(
-        ___0,
-        ___1,
-        ___temp0,
-        ___3,
-        ___4,
-        ___5,
-    )
+    ___action28(___0, ___1, ___temp0, ___3, ___4, ___5)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action68<
-    'input,
->(
+fn ___action68<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
     ___3: (usize, ast::Statement, usize),
-    ___4: (usize, core::option::Option<(Tok<'input>, ast::Statement)>, usize),
-) -> ast::Statement
-{
+    ___4: (
+        usize,
+        core::option::Option<(Tok<'input>, ast::Statement)>,
+        usize,
+    ),
+) -> ast::Statement {
     let ___start0 = ___1.2;
     let ___end0 = ___2.0;
-    let ___temp0 = ___action50(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action50(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action28(
-        ___0,
-        ___1,
-        ___temp0,
-        ___2,
-        ___3,
-        ___4,
-    )
+    ___action28(___0, ___1, ___temp0, ___2, ___3, ___4)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action69<
-    'input,
->(
+fn ___action69<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
     ___3: (usize, Box<ast::Expr>, usize),
     ___4: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___2.0;
     let ___end0 = ___2.2;
-    let ___temp0 = ___action49(
-        ___2,
-    );
+    let ___temp0 = ___action49(___2);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action27(
-        ___0,
-        ___1,
-        ___temp0,
-        ___3,
-        ___4,
-    )
+    ___action27(___0, ___1, ___temp0, ___3, ___4)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action70<
-    'input,
->(
+fn ___action70<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
     ___3: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___1.2;
     let ___end0 = ___2.0;
-    let ___temp0 = ___action50(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action50(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action27(
-        ___0,
-        ___1,
-        ___temp0,
-        ___2,
-        ___3,
-    )
+    ___action27(___0, ___1, ___temp0, ___2, ___3)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action71<
-    'input,
->(
+fn ___action71<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
     ___3: (usize, ast::Ident, usize),
     ___4: (usize, ast::ArgumentType, usize),
-    ___5: (usize, core::option::Option<(Tok<'input>, ast::ReturnType)>, usize),
+    ___5: (
+        usize,
+        core::option::Option<(Tok<'input>, ast::ReturnType)>,
+        usize,
+    ),
     ___6: (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___1.0;
     let ___end0 = ___1.2;
-    let ___temp0 = ___action58(
-        ___1,
-    );
+    let ___temp0 = ___action58(___1);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action5(
-        ___0,
-        ___temp0,
-        ___2,
-        ___3,
-        ___4,
-        ___5,
-        ___6,
-    )
+    ___action5(___0, ___temp0, ___2, ___3, ___4, ___5, ___6)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action72<
-    'input,
->(
+fn ___action72<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, ast::Ident, usize),
     ___3: (usize, ast::ArgumentType, usize),
-    ___4: (usize, core::option::Option<(Tok<'input>, ast::ReturnType)>, usize),
+    ___4: (
+        usize,
+        core::option::Option<(Tok<'input>, ast::ReturnType)>,
+        usize,
+    ),
     ___5: (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___0.2;
     let ___end0 = ___1.0;
-    let ___temp0 = ___action59(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action59(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action5(
-        ___0,
-        ___temp0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-        ___5,
-    )
+    ___action5(___0, ___temp0, ___1, ___2, ___3, ___4, ___5)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action73<
-    'input,
->(
+fn ___action73<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::ReturnType, usize),
-) -> core::option::Option<(Tok<'input>, ast::ReturnType)>
-{
+) -> core::option::Option<(Tok<'input>, ast::ReturnType)> {
     let ___start0 = ___0.0;
     let ___end0 = ___1.2;
-    let ___temp0 = ___action57(
-        ___0,
-        ___1,
-    );
+    let ___temp0 = ___action57(___0, ___1);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action55(
-        ___temp0,
-    )
+    ___action55(___temp0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action74<
-    'input,
->(
+fn ___action74<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4120,60 +3821,32 @@ fn ___action74<
     ___5: (usize, Tok<'input>, usize),
     ___6: (usize, ast::ReturnType, usize),
     ___7: (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___5.0;
     let ___end0 = ___6.2;
-    let ___temp0 = ___action73(
-        ___5,
-        ___6,
-    );
+    let ___temp0 = ___action73(___5, ___6);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action71(
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-        ___temp0,
-        ___7,
-    )
+    ___action71(___0, ___1, ___2, ___3, ___4, ___temp0, ___7)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action75<
-    'input,
->(
+fn ___action75<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
     ___3: (usize, ast::Ident, usize),
     ___4: (usize, ast::ArgumentType, usize),
     ___5: (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___4.2;
     let ___end0 = ___5.0;
-    let ___temp0 = ___action56(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action56(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action71(
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-        ___temp0,
-        ___5,
-    )
+    ___action71(___0, ___1, ___2, ___3, ___4, ___temp0, ___5)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action76<
-    'input,
->(
+fn ___action76<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, ast::Ident, usize),
@@ -4181,77 +3854,43 @@ fn ___action76<
     ___4: (usize, Tok<'input>, usize),
     ___5: (usize, ast::ReturnType, usize),
     ___6: (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___4.0;
     let ___end0 = ___5.2;
-    let ___temp0 = ___action73(
-        ___4,
-        ___5,
-    );
+    let ___temp0 = ___action73(___4, ___5);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action72(
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___temp0,
-        ___6,
-    )
+    ___action72(___0, ___1, ___2, ___3, ___temp0, ___6)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action77<
-    'input,
->(
+fn ___action77<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, ast::Ident, usize),
     ___3: (usize, ast::ArgumentType, usize),
     ___4: (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___3.2;
     let ___end0 = ___4.0;
-    let ___temp0 = ___action56(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action56(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action72(
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___temp0,
-        ___4,
-    )
+    ___action72(___0, ___1, ___2, ___3, ___temp0, ___4)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action78<
-    'input,
->(
+fn ___action78<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::Statement, usize),
-) -> core::option::Option<(Tok<'input>, ast::Statement)>
-{
+) -> core::option::Option<(Tok<'input>, ast::Statement)> {
     let ___start0 = ___0.0;
     let ___end0 = ___1.2;
-    let ___temp0 = ___action48(
-        ___0,
-        ___1,
-    );
+    let ___temp0 = ___action48(___0, ___1);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action46(
-        ___temp0,
-    )
+    ___action46(___temp0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action79<
-    'input,
->(
+fn ___action79<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
@@ -4259,187 +3898,102 @@ fn ___action79<
     ___4: (usize, ast::Statement, usize),
     ___5: (usize, Tok<'input>, usize),
     ___6: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___5.0;
     let ___end0 = ___6.2;
-    let ___temp0 = ___action78(
-        ___5,
-        ___6,
-    );
+    let ___temp0 = ___action78(___5, ___6);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action67(
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-        ___temp0,
-    )
+    ___action67(___0, ___1, ___2, ___3, ___4, ___temp0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action80<
-    'input,
->(
+fn ___action80<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
     ___3: (usize, Box<ast::Expr>, usize),
     ___4: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___4.2;
     let ___end0 = ___4.2;
-    let ___temp0 = ___action47(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action47(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action67(
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-        ___temp0,
-    )
+    ___action67(___0, ___1, ___2, ___3, ___4, ___temp0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action81<
-    'input,
->(
+fn ___action81<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
     ___3: (usize, ast::Statement, usize),
     ___4: (usize, Tok<'input>, usize),
     ___5: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___4.0;
     let ___end0 = ___5.2;
-    let ___temp0 = ___action78(
-        ___4,
-        ___5,
-    );
+    let ___temp0 = ___action78(___4, ___5);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action68(
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___temp0,
-    )
+    ___action68(___0, ___1, ___2, ___3, ___temp0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action82<
-    'input,
->(
+fn ___action82<'input>(
     ___0: (usize, usize, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
     ___3: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___3.2;
     let ___end0 = ___3.2;
-    let ___temp0 = ___action47(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action47(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action68(
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___temp0,
-    )
+    ___action68(___0, ___1, ___2, ___3, ___temp0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action83<
-    'input,
->(
+fn ___action83<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::Ident, usize),
     ___2: (usize, Tok<'input>, usize),
     ___3: (usize, ast::Integer, usize),
     ___4: (usize, Tok<'input>, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action6(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-    )
+    ___action6(___temp0, ___0, ___1, ___2, ___3, ___4)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action84<
-    'input,
->(
+fn ___action84<'input>(
     ___0: (usize, ast::Ident, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
-) -> ast::Expr
-{
+) -> ast::Expr {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action34(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-    )
+    ___action34(___temp0, ___0, ___1, ___2)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action85<
-    'input,
->(
+fn ___action85<'input>(
     ___0: (usize, ast::Ident, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Tok<'input>, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action25(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-    )
+    ___action25(___temp0, ___0, ___1, ___2)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action86<
-    'input,
->(
+fn ___action86<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, ast::Ident, usize),
@@ -4447,562 +4001,316 @@ fn ___action86<
     ___4: (usize, Tok<'input>, usize),
     ___5: (usize, ast::ReturnType, usize),
     ___6: (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action74(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-        ___5,
-        ___6,
-    )
+    ___action74(___temp0, ___0, ___1, ___2, ___3, ___4, ___5, ___6)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action87<
-    'input,
->(
+fn ___action87<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, ast::Ident, usize),
     ___3: (usize, ast::ArgumentType, usize),
     ___4: (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action75(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-    )
+    ___action75(___temp0, ___0, ___1, ___2, ___3, ___4)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action88<
-    'input,
->(
+fn ___action88<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::Ident, usize),
     ___2: (usize, ast::ArgumentType, usize),
     ___3: (usize, Tok<'input>, usize),
     ___4: (usize, ast::ReturnType, usize),
     ___5: (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action76(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-        ___5,
-    )
+    ___action76(___temp0, ___0, ___1, ___2, ___3, ___4, ___5)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action89<
-    'input,
->(
+fn ___action89<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::Ident, usize),
     ___2: (usize, ast::ArgumentType, usize),
     ___3: (usize, ast::Statement, usize),
-) -> ast::Definition
-{
+) -> ast::Definition {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action77(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-    )
+    ___action77(___temp0, ___0, ___1, ___2, ___3)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action90<
-    'input,
->(
+fn ___action90<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
     ___3: (usize, ast::Statement, usize),
     ___4: (usize, Tok<'input>, usize),
     ___5: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action79(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-        ___5,
-    )
+    ___action79(___temp0, ___0, ___1, ___2, ___3, ___4, ___5)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action91<
-    'input,
->(
+fn ___action91<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
     ___3: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action80(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-    )
+    ___action80(___temp0, ___0, ___1, ___2, ___3)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action92<
-    'input,
->(
+fn ___action92<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Box<ast::Expr>, usize),
     ___2: (usize, ast::Statement, usize),
     ___3: (usize, Tok<'input>, usize),
     ___4: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action81(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-        ___4,
-    )
+    ___action81(___temp0, ___0, ___1, ___2, ___3, ___4)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action93<
-    'input,
->(
+fn ___action93<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Box<ast::Expr>, usize),
     ___2: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action82(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-    )
+    ___action82(___temp0, ___0, ___1, ___2)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action94<
-    'input,
->(
-    ___0: (usize, ast::InlineCode, usize),
-) -> ast::Expr
-{
+fn ___action94<'input>(___0: (usize, ast::InlineCode, usize)) -> ast::Expr {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action33(
-        ___temp0,
-        ___0,
-    )
+    ___action33(___temp0, ___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action95<
-    'input,
->(
-    ___0: (usize, ast::InlineCode, usize),
-) -> ast::Statement
-{
+fn ___action95<'input>(___0: (usize, ast::InlineCode, usize)) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action21(
-        ___temp0,
-        ___0,
-    )
+    ___action21(___temp0, ___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action96<
-    'input,
->(
+fn ___action96<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action26(
-        ___temp0,
-        ___0,
-        ___1,
-    )
+    ___action26(___temp0, ___0, ___1)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action97<
-    'input,
->(
-    ___0: (usize, Tok<'input>, usize),
-) -> ast::Statement
-{
+fn ___action97<'input>(___0: (usize, Tok<'input>, usize)) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action23(
-        ___temp0,
-        ___0,
-    )
+    ___action23(___temp0, ___0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action98<
-    'input,
->(
+fn ___action98<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Box<ast::Expr>, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action24(
-        ___temp0,
-        ___0,
-        ___1,
-    )
+    ___action24(___temp0, ___0, ___1)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action99<
-    'input,
->(
+fn ___action99<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, alloc::vec::Vec<ast::Statement>, usize),
     ___2: (usize, Tok<'input>, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action12(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-    )
+    ___action12(___temp0, ___0, ___1, ___2)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action100<
-    'input,
->(
+fn ___action100<'input>(
     ___0: (usize, ast::Variable, usize),
     ___1: (usize, ast::ComparisonOp, usize),
     ___2: (usize, ast::IntegerExpr, usize),
-) -> ast::Expr
-{
+) -> ast::Expr {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action35(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-    )
+    ___action35(___temp0, ___0, ___1, ___2)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action101<
-    'input,
->(
+fn ___action101<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
     ___2: (usize, Box<ast::Expr>, usize),
     ___3: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action69(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-        ___3,
-    )
+    ___action69(___temp0, ___0, ___1, ___2, ___3)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action102<
-    'input,
->(
+fn ___action102<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Box<ast::Expr>, usize),
     ___2: (usize, ast::Statement, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.0;
     let ___end0 = ___0.0;
-    let ___temp0 = ___action60(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action60(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action70(
-        ___temp0,
-        ___0,
-        ___1,
-        ___2,
-    )
+    ___action70(___temp0, ___0, ___1, ___2)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action103<
-    'input,
->(
+fn ___action103<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, ast::ArgumentType, usize),
     ___2: (usize, Tok<'input>, usize),
-) -> ast::ArgumentType
-{
+) -> ast::ArgumentType {
     let ___start0 = ___1.0;
     let ___end0 = ___1.2;
-    let ___temp0 = ___action53(
-        ___1,
-    );
+    let ___temp0 = ___action53(___1);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action7(
-        ___0,
-        ___temp0,
-        ___2,
-    )
+    ___action7(___0, ___temp0, ___2)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action104<
-    'input,
->(
+fn ___action104<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
-) -> ast::ArgumentType
-{
+) -> ast::ArgumentType {
     let ___start0 = ___0.2;
     let ___end0 = ___1.0;
-    let ___temp0 = ___action54(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action54(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action7(
-        ___0,
-        ___temp0,
-        ___1,
-    )
+    ___action7(___0, ___temp0, ___1)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action105<
-    'input,
->(
-    ___lookbehind: &usize,
-    ___lookahead: &usize,
-) -> ast::Program
-{
+fn ___action105<'input>(___lookbehind: &usize, ___lookahead: &usize) -> ast::Program {
     let ___start0 = *___lookbehind;
     let ___end0 = *___lookahead;
-    let ___temp0 = ___action61(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action61(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action1(
-        ___temp0,
-    )
+    ___action1(___temp0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action106<
-    'input,
->(
-    ___0: (usize, alloc::vec::Vec<ast::Definition>, usize),
-) -> ast::Program
-{
+fn ___action106<'input>(___0: (usize, alloc::vec::Vec<ast::Definition>, usize)) -> ast::Program {
     let ___start0 = ___0.0;
     let ___end0 = ___0.2;
-    let ___temp0 = ___action62(
-        ___0,
-    );
+    let ___temp0 = ___action62(___0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action1(
-        ___temp0,
-    )
+    ___action1(___temp0)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action107<
-    'input,
->(
+fn ___action107<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, Tok<'input>, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___0.2;
     let ___end0 = ___1.0;
-    let ___temp0 = ___action51(
-        &___start0,
-        &___end0,
-    );
+    let ___temp0 = ___action51(&___start0, &___end0);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action99(
-        ___0,
-        ___temp0,
-        ___1,
-    )
+    ___action99(___0, ___temp0, ___1)
 }
 
 #[allow(clippy::too_many_arguments)]
-fn ___action108<
-    'input,
->(
+fn ___action108<'input>(
     ___0: (usize, Tok<'input>, usize),
     ___1: (usize, alloc::vec::Vec<ast::Statement>, usize),
     ___2: (usize, Tok<'input>, usize),
-) -> ast::Statement
-{
+) -> ast::Statement {
     let ___start0 = ___1.0;
     let ___end0 = ___1.2;
-    let ___temp0 = ___action52(
-        ___1,
-    );
+    let ___temp0 = ___action52(___1);
     let ___temp0 = (___start0, ___temp0, ___end0);
-    ___action99(
-        ___0,
-        ___temp0,
-        ___2,
-    )
+    ___action99(___0, ___temp0, ___2)
 }
 #[allow(clippy::type_complexity)]
 
-pub trait ___ToTriple<'input, >
-{
-    fn to_triple(value: Self) -> Result<(usize,Tok<'input>,usize), ___lalrpop_util::ParseError<usize, Tok<'input>, tok::Error>>;
+pub trait ___ToTriple<'input> {
+    fn to_triple(
+        value: Self,
+    ) -> Result<
+        (usize, Tok<'input>, usize),
+        ___lalrpop_util::ParseError<usize, Tok<'input>, tok::Error>,
+    >;
 }
 
-impl<'input, > ___ToTriple<'input, > for (usize, Tok<'input>, usize)
-{
-    fn to_triple(value: Self) -> Result<(usize,Tok<'input>,usize), ___lalrpop_util::ParseError<usize, Tok<'input>, tok::Error>> {
+impl<'input> ___ToTriple<'input> for (usize, Tok<'input>, usize) {
+    fn to_triple(
+        value: Self,
+    ) -> Result<
+        (usize, Tok<'input>, usize),
+        ___lalrpop_util::ParseError<usize, Tok<'input>, tok::Error>,
+    > {
         Ok(value)
     }
 }
-impl<'input, > ___ToTriple<'input, > for Result<(usize, Tok<'input>, usize), tok::Error>
-{
-    fn to_triple(value: Self) -> Result<(usize,Tok<'input>,usize), ___lalrpop_util::ParseError<usize, Tok<'input>, tok::Error>> {
+impl<'input> ___ToTriple<'input> for Result<(usize, Tok<'input>, usize), tok::Error> {
+    fn to_triple(
+        value: Self,
+    ) -> Result<
+        (usize, Tok<'input>, usize),
+        ___lalrpop_util::ParseError<usize, Tok<'input>, tok::Error>,
+    > {
         match value {
             Ok(v) => Ok(v),
             Err(error) => Err(___lalrpop_util::ParseError::User { error }),

@@ -1,5 +1,6 @@
 //! Transforms an AST into (not really byte) code.
 
+use std::cell::Cell;
 use std::collections::HashMap;
 use std::error::Error;
 use std::fmt::{Display, Formatter};
@@ -30,16 +31,24 @@ pub enum CompileErrorKind {
 impl Display for CompileError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         use CompileErrorKind::*;
-        write!(f, "CompileError at {}: {}", self.location, match &self.kind {
-            ConstRedeclaration(name) => format!("Declaration of already existing const {}", name),
-            FuncRedeclaration(name) => format!("Declaration of already existing function {}", name),
-            UndefinedFunction(name) => format!("Reference to undefined function {}", name),
-            InlineFunctionCyclicDependency(name) => format!("Detected cyclic dependency in inline functions ({})", name),
-            MainNotFound => format!("Could not find 'main' function"),
-            ReturnInNoReturnContext => format!("Cannot use 'return' here"),
-            UndefinedConstant(name) => format!("Undefined constant {}", name),
-            Unimplemented(what) => format!("\"{}\" is not implemented yet", what),
-        })
+        write!(
+            f,
+            "CompileError at {}: {}",
+            self.location,
+            match &self.kind {
+                ConstRedeclaration(name) =>
+                    format!("Declaration of already existing const {}", name),
+                FuncRedeclaration(name) =>
+                    format!("Declaration of already existing function {}", name),
+                UndefinedFunction(name) => format!("Reference to undefined function {}", name),
+                InlineFunctionCyclicDependency(name) =>
+                    format!("Detected cyclic dependency in inline functions ({})", name),
+                MainNotFound => format!("Could not find 'main' function"),
+                ReturnInNoReturnContext => format!("Cannot use 'return' here"),
+                UndefinedConstant(name) => format!("Undefined constant {}", name),
+                Unimplemented(what) => format!("\"{}\" is not implemented yet", what),
+            }
+        )
     }
 }
 
@@ -132,54 +141,61 @@ pub struct CompiledFunction {
     compiling: bool,
     label: u32,
     calling_context: CallingContext,
+    use_count: u32,
 }
 
 #[derive(Debug, Default)]
 pub struct Compiler {
     evaluator: Evaluator,
     functions: HashMap<String, CompiledFunction>,
-    next_label: u32,
+    next_label: Cell<u32>,
 }
 
 impl Compiler {
     pub fn new() -> Self {
         Self::default()
     }
+
+    pub fn get_label(&self) -> u32 {
+        let label = self.next_label.take();
+        self.next_label.set(label + 1);
+        label
+    }
+
     pub fn compile(&mut self, ast: ast::Program) -> Result<String, CompileError> {
         self.evaluator.evaluate(ast)?;
 
         for func in self.evaluator.functions.values() {
             use AstFunc::*;
-            match func.as_ref().expect("At this stage all functions should be Some")
+            match func
+                .as_ref()
+                .expect("At this stage all functions should be Some")
             {
                 InlineFunction(f) => {
-                    self.functions.insert(
-                        f.name.clone(),
-                        CompiledFunction {
-                            compiled: false,
-                            compiling: false,
-                            inline: true,
-                            // Inline functions do not use labels.
-                            label: 0,
-                            // Calling context should never be used for inline function.
-                            calling_context: CallingContext::PassNothing,
-                            code: vec![],
-                        },
-                    );
+                    let func = CompiledFunction {
+                        compiled: false,
+                        compiling: false,
+                        inline: true,
+                        label: self.get_label(),
+                        // Calling context should never be used for inline function.
+                        // (they kinda always use PassState and ReturnState)
+                        calling_context: CallingContext::PassNothing,
+                        code: vec![],
+                        use_count: 0,
+                    };
+                    self.functions.insert(f.name.clone(), func);
                 }
                 Function(f) => {
-                    self.functions.insert(
-                        f.name.clone(),
-                        CompiledFunction {
-                            compiled: false,
-                            compiling: false,
-                            inline: false,
-                            label: self.next_label,
-                            calling_context: self.reveal_calling_context(&f.name),
-                            code: vec![],
-                        },
-                    );
-                    self.next_label += 1;
+                    let func = CompiledFunction {
+                        compiled: false,
+                        compiling: false,
+                        inline: false,
+                        label: self.get_label(),
+                        calling_context: self.reveal_calling_context(&f.name),
+                        code: vec![],
+                        use_count: 0,
+                    };
+                    self.functions.insert(f.name.clone(), func);
                 }
             };
         }
@@ -188,8 +204,12 @@ impl Compiler {
             self.compile_function(&name)?;
         }
 
-        let main_label = match self.functions.get("main") {
-            Some(x) => x.label,
+        let main_label = match self.functions.get_mut("main") {
+            Some(f) => {
+                // main is always used
+                f.use_count += 1;
+                f.label
+            },
             None => {
                 return error(CompileErrorKind::MainNotFound, 0);
             }
@@ -198,12 +218,14 @@ impl Compiler {
         // Set our starting point at 'main'
         let mut code = vec![format!(">{}|", Self::encode_label(main_label))];
 
-        // Add our functions
+        // Add our functions (excluding not used).
         for func in self.functions.values_mut() {
             if !func.inline {
-                code.push(format!("|{}:", Self::encode_label(func.label)));
-                code.append(&mut func.code);
-                // TODO make sure our functions return
+                if func.use_count > 0 {
+                    code.push(format!("|{}:", Self::encode_label(func.label)));
+                    code.append(&mut func.code);
+                    // TODO make sure our functions return
+                }
             }
         }
 
@@ -230,13 +252,20 @@ impl Compiler {
     }
 
     fn reveal_calling_context(&self, func_name: &String) -> CallingContext {
-        match self.evaluator.functions.get(func_name).expect("must exist").as_ref().expect("must exist") {
+        match self
+            .evaluator
+            .functions
+            .get(func_name)
+            .expect("must exist")
+            .as_ref()
+            .expect("must exist")
+        {
             AstFunc::Function(f) => match f.arg {
                 ast::ArgumentType::Nothing => CallingContext::PassNothing,
                 ast::ArgumentType::Argument => CallingContext::PassArgument,
                 ast::ArgumentType::State => CallingContext::PassState,
             },
-            _ => panic!("reveal_calling_context should be called only for non-inline functions")
+            _ => panic!("reveal_calling_context should be called only for non-inline functions"),
         }
     }
 
@@ -257,17 +286,18 @@ impl Compiler {
                     result.append(&mut self.compile_function_call(name, stmt.location)?);
                 }
                 StatementKind::Loop { body } => {
-                    let label = Self::encode_label(self.next_label);
-                    self.next_label += 1;
+                    let label = Self::encode_label(self.get_label());
                     result.push(format!("|{}:", label));
                     result.append(&mut self.compile_statements(body, ctx)?);
                     result.push(format!(">{}|", label));
                 }
-                StatementKind::While { condition, body, negative } => {
-                    let start_label = Self::encode_label(self.next_label);
-                    self.next_label += 1;
-                    let finish_label = Self::encode_label(self.next_label);
-                    self.next_label += 1;
+                StatementKind::While {
+                    condition,
+                    body,
+                    negative,
+                } => {
+                    let start_label = Self::encode_label(self.get_label());
+                    let finish_label = Self::encode_label(self.get_label());
 
                     // start label
                     result.push(format!("|{}:", start_label));
@@ -287,11 +317,14 @@ impl Compiler {
                     // finish label
                     result.push(format!("|{}:", finish_label));
                 }
-                StatementKind::If { condition, body, orelse, negative } => {
-                    let failed_label = Self::encode_label(self.next_label);
-                    self.next_label += 1;
-                    let finish_label = Self::encode_label(self.next_label);
-                    self.next_label += 1;
+                StatementKind::If {
+                    condition,
+                    body,
+                    orelse,
+                    negative,
+                } => {
+                    let failed_label = Self::encode_label(self.get_label());
+                    let finish_label = Self::encode_label(self.get_label());
                     // eval expr first
                     result.append(&mut self.compile_expr(*condition)?);
                     if negative {
@@ -315,14 +348,20 @@ impl Compiler {
                     if let Some(expr) = expr {
                         result.append(&mut self.compile_expr(*expr)?);
                     }
-                    result.push(match ctx {
-                        ReturnContext::NoReturn => {
-                            return error(CompileErrorKind::ReturnInNoReturnContext, stmt.location);
+                    result.push(
+                        match ctx {
+                            ReturnContext::NoReturn => {
+                                return error(
+                                    CompileErrorKind::ReturnInNoReturnContext,
+                                    stmt.location,
+                                );
+                            }
+                            ReturnContext::ReturnNothing => "<|",
+                            ReturnContext::ReturnArgument => "<-|",
+                            ReturnContext::ReturnState => "<=|",
                         }
-                        ReturnContext::ReturnNothing => "<|",
-                        ReturnContext::ReturnArgument => "<-|",
-                        ReturnContext::ReturnState => "<=|",
-                    }.into());
+                        .into(),
+                    );
                 }
                 StatementKind::InlineCode { body } => {
                     result.push(body.code);
@@ -333,14 +372,20 @@ impl Compiler {
         Ok(result)
     }
 
-    fn compile_function_call(&mut self, name: String, loc: usize) -> Result<Vec<String>, CompileError> {
+    fn compile_function_call(
+        &mut self,
+        name: String,
+        loc: usize,
+    ) -> Result<Vec<String>, CompileError> {
         if !self.functions.contains_key(&name) {
             return error(CompileErrorKind::UndefinedFunction(name), loc);
         }
 
         self.compile_function_if_inline(&name)?;
 
-        let func = self.functions.get(&name).unwrap();
+        let func = self.functions.get_mut(&name).unwrap();
+
+        func.use_count += 1;
 
         let mut result = vec![];
 
@@ -361,7 +406,7 @@ impl Compiler {
     fn reveal_const(&self, name: &String, loc: usize) -> Result<u32, CompileError> {
         match self.evaluator.consts.get(name) {
             None => error(CompileErrorKind::UndefinedConstant(name.clone()), loc),
-            Some(val) => Ok(val.value)
+            Some(val) => Ok(val.value),
         }
     }
 
@@ -382,15 +427,24 @@ impl Compiler {
                 let op = match op {
                     ComparisonOp::Eq => "=",
                     ComparisonOp::NotEq => {
-                        return error(CompileErrorKind::Unimplemented("!= operator".into()), expr.location);
+                        return error(
+                            CompileErrorKind::Unimplemented("!= operator".into()),
+                            expr.location,
+                        );
                     }
                     ComparisonOp::LessThan => "<",
                     ComparisonOp::GreaterThan => ">",
                     ComparisonOp::LessOrEqual => {
-                        return error(CompileErrorKind::Unimplemented("<= operator".into()), expr.location);
+                        return error(
+                            CompileErrorKind::Unimplemented("<= operator".into()),
+                            expr.location,
+                        );
                     }
                     ComparisonOp::GreaterOrEqual => {
-                        return error(CompileErrorKind::Unimplemented(">= operator".into()), expr.location);
+                        return error(
+                            CompileErrorKind::Unimplemented(">= operator".into()),
+                            expr.location,
+                        );
                     }
                 };
                 vec![format!("({}{}{})", var.name, op, value)]
@@ -487,10 +541,7 @@ impl Compiler {
         }
     }
 
-    fn get_function_ast(
-        &mut self,
-        name: &String,
-    ) -> (Vec<ast::Statement>, ast::ReturnType) {
+    fn get_function_ast(&mut self, name: &String) -> (Vec<ast::Statement>, ast::ReturnType) {
         match self
             .evaluator
             .functions
@@ -499,9 +550,7 @@ impl Compiler {
             .take()
             .expect("get_function_ast should never be called twice")
         {
-            AstFunc::Function(AstFunction {
-                                  body, returns, ..
-                              }) => (body, returns),
+            AstFunc::Function(AstFunction { body, returns, .. }) => (body, returns),
             _ => {
                 panic!("get_function_ast() called on inline function");
             }

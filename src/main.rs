@@ -1,7 +1,7 @@
-use std::fs;
-use std::process::exit;
 use anyhow::Result;
 use clap::Parser;
+use std::fs;
+use std::process::exit;
 
 mod ast;
 mod compile;
